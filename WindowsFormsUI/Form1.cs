@@ -45,7 +45,6 @@ namespace WindowsFormsUI
             }
             catch (Exception)
             {
-
                 t = "-1";
             }
             
