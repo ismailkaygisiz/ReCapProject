@@ -46,7 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Form1.cs" />
+=======
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+>>>>>>> 933b91b57a299e76015f7c5d76860be81e762c26
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
