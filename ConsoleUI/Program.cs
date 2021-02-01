@@ -29,7 +29,6 @@ namespace ConsoleUI
                 Console.WriteLine(car.BrandId + " " + car.Description+ " " + car.DailyPrice);
             }
             Console.WriteLine("*****************************");
-            Console.Read();
         }
     }
 }
