@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : EfEntityRepositoryBase<Car,ReCapProjectDatabase>,ICarDal
+    public class EfCarDal : EfEntityRepositoryBase<Car,ReCapProjectContext>,ICarDal
     {
     }
 }
