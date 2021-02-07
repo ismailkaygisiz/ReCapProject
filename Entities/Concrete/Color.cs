@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Brand : IEntity
+    public class Color : IEntity
     {
         public int Id { get; set; }
-        public string BrandName { get; set; }
+        public string ColorName { get; set; }
 
     }
 }

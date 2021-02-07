@@ -1,5 +1,7 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 using System;
 
 namespace ConsoleUI
@@ -8,28 +10,36 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            TestCar();
+            TestBrand();
+            TestColor();
+        }
 
-            CarManager carManager = new CarManager(new InMemoryCarDal());
-            
-            // Get all
-            Console.WriteLine("GetAll");
-            foreach (var car in carManager.GetAll())
+        private static void TestColor()
+        {
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            foreach (Color color in colorManager.GetAll())
             {
-                Console.WriteLine("**********************************");
-                Console.WriteLine("Description : {0}", car.Description);
-                Console.WriteLine("Daily Price : {0}", car.DailyPrice);
-                Console.WriteLine("Model Year : {0}", car.ModelYear + "\n");
+                Console.WriteLine(color.ColorName);
             }
+        }
 
-            // Get by brandId
-            int brandId = 2;
-            Console.WriteLine("\n\nGetById\n*****************************");
-            foreach (var car in carManager.GetById(brandId))
-            {            
-                Console.WriteLine(car.BrandId + " " + car.Description+ " " + car.DailyPrice);
+        private static void TestBrand()
+        {
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            foreach (Brand brand in brandManager.GetAll())
+            {
+                Console.WriteLine(brand.BrandName);
             }
-            Console.WriteLine("*****************************");
-            Console.Read();
+        }
+
+        private static void TestCar()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            foreach (Car car in carManager.GetAll())
+            {
+                Console.WriteLine(car.Description);
+            }
         }
     }
 }
