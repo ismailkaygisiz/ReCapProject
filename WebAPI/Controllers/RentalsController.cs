@@ -86,9 +86,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyreturndate")]
-        public IActionResult GetByReturnDate(DateTime rentDate)
+        public IActionResult GetByReturnDate(DateTime returnDate)
         {
-            var result = _rentalService.GetByReturnDate(rentDate);
+            var result = _rentalService.GetByReturnDate(returnDate);
 
             if (result.Success)
             {
