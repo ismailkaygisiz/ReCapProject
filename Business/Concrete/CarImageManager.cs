@@ -91,22 +91,25 @@ namespace Business.Concrete
 
         private IDataResult<CarImage> CreateFile(Image image, CarImage carImage)
         {
-            string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName + @"\Images\");
+            string path = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot";
+            string folder = "\\images\\";
+            string defaultImage = (folder + "default_img.png").Replace("\\", "/");
+
             if (image.Files == null)
             {
-                carImage.ImagePath = ("\\default_img.png").Replace("\\", "/");
-
+                carImage.ImagePath = defaultImage;
             }
             else
             {
                 string extension = Path.GetExtension(image.Files.FileName);
                 string guid = Guid.NewGuid().ToString() + DateTime.Now.Millisecond + "_" + DateTime.Now.Hour + extension + "_" + DateTime.Now.Minute;
+                string imagePath = folder + guid + extension;
 
-                using (FileStream fileStream = System.IO.File.Create(path + guid + extension))
+                using (FileStream fileStream = System.IO.File.Create(path + imagePath))
                 {
-                    image.Files?.CopyTo(fileStream);
+                    image.Files.CopyTo(fileStream);
                     fileStream.Flush();
-                    carImage.ImagePath = (guid + extension).Replace("\\", "/");
+                    carImage.ImagePath = (imagePath).Replace("\\", "/");
                 }
             }
 
@@ -117,10 +120,16 @@ namespace Business.Concrete
         private IResult DeleteFile(CarImage carImage)
         {
             var result = _carImageDal.Get(c => c.Id == carImage.Id);
-            string path = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName + @"\Images\");
+            string path = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot";
+            string folder = "\\images\\";
+            string defaultImage = (folder + "default_img.png").Replace("\\", "/");
+
             try
             {
-                File.Delete(path + result.ImagePath);
+                if(result.ImagePath != defaultImage)
+                {
+                    File.Delete(path + result.ImagePath);
+                }
             }
             catch (Exception)
             {
