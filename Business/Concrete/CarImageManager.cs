@@ -91,7 +91,7 @@ namespace Business.Concrete
 
         private IDataResult<CarImage> CreateFile(Image image, CarImage carImage)
         {
-            string path = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot";
+            string path = Directory.GetCurrentDirectory() + "\\wwwroot";
             string folder = "\\images\\";
             string defaultImage = (folder + "default_img.png").Replace("\\", "/");
 
@@ -105,7 +105,7 @@ namespace Business.Concrete
                 string guid = Guid.NewGuid().ToString() + DateTime.Now.Millisecond + "_" + DateTime.Now.Hour + extension + "_" + DateTime.Now.Minute;
                 string imagePath = folder + guid + extension;
 
-                using (FileStream fileStream = System.IO.File.Create(path + imagePath))
+                using (FileStream fileStream = File.Create(path + imagePath))
                 {
                     image.Files.CopyTo(fileStream);
                     fileStream.Flush();
@@ -120,7 +120,7 @@ namespace Business.Concrete
         private IResult DeleteFile(CarImage carImage)
         {
             var result = _carImageDal.Get(c => c.Id == carImage.Id);
-            string path = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot";
+            string path = Directory.GetCurrentDirectory() + "\\wwwroot";
             string folder = "\\images\\";
             string defaultImage = (folder + "default_img.png").Replace("\\", "/");
 
@@ -133,7 +133,6 @@ namespace Business.Concrete
             }
             catch (Exception)
             {
-
                 return new ErrorResult();
             }
 
