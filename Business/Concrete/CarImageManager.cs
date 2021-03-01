@@ -23,7 +23,7 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
-        public IResult Add(IFormFile file, CarImage carImage)
+        public IResult Add(CarImage carImage, IFormFile file)
         {
             IResult result = BusinessRules.Run(
                 CheckIfCarImageLimitExceeded(carImage.CarId)
@@ -73,7 +73,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == carId));
         }
 
-        public IResult Update(IFormFile file, CarImage carImage)
+        public IResult Update(CarImage carImage, IFormFile file)
         {
             IResult result = BusinessRules.Run(
                 CheckIfCarImageIdIsNotExists(carImage.Id),
