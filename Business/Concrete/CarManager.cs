@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac;
 using Core.CrossCuttingConcerns.Validation;
@@ -25,7 +26,6 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            _carDal.Add(car);
             return new SuccessResult();
         }
 
@@ -36,6 +36,7 @@ namespace Business.Concrete
 
         }
 
+        [SecuredOperation("Car.GetAll")]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll());
