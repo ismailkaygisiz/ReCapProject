@@ -1,10 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Constans;
 using Core.Utilities.Business;
+using Core.Utilities.Helpers;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +23,7 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
-        public IResult Add(Image image, CarImage carImage)
+        public IResult Add(IFormFile file, CarImage carImage)
         {
             IResult result = BusinessRules.Run(
                 CheckIfCarImageLimitExceeded(carImage.CarId)
@@ -32,8 +34,8 @@ namespace Business.Concrete
                 return result;
             }
 
-            var newImage = CreateFile(image, carImage).Data;
-            _carImageDal.Add(newImage);
+            CarImage newCarImage = CreatedFile(file, carImage);
+            _carImageDal.Add(newCarImage);
 
             return new SuccessResult();
         }
@@ -49,7 +51,7 @@ namespace Business.Concrete
                 return result;
             }
 
-            DeleteFile(carImage);
+            DeletedFile(carImage);
             _carImageDal.Delete(carImage);
 
             return new SuccessResult();
@@ -71,7 +73,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == carId));
         }
 
-        public IResult Update(Image image, CarImage carImage)
+        public IResult Update(IFormFile file, CarImage carImage)
         {
             IResult result = BusinessRules.Run(
                 CheckIfCarImageIdIsNotExists(carImage.Id),
@@ -83,68 +85,44 @@ namespace Business.Concrete
                 return result;
             }
 
-            var newImage = UpdateFile(image, carImage).Data;
+            var newImage = UpdatedFile(file, carImage);
             _carImageDal.Update(newImage);
 
             return new SuccessResult();
         }
 
-        private IDataResult<CarImage> CreateFile(Image image, CarImage carImage)
+        private CarImage CreatedFile(IFormFile file, CarImage carImage)
         {
-            string path = Directory.GetCurrentDirectory() + "\\wwwroot";
-            string folder = "\\images\\";
-            string defaultImage = (folder + "default_img.png").Replace("\\", "/");
+            var newImagePath = FileHelper.CreateFile(file).Data;
+            var time = DateTime.Now;
 
-            if (image.Files == null)
+            return new CarImage
             {
-                carImage.ImagePath = defaultImage;
-            }
-            else
-            {
-                string extension = Path.GetExtension(image.Files.FileName);
-                string guid = Guid.NewGuid().ToString() + DateTime.Now.Millisecond + "_" + DateTime.Now.Hour + extension + "_" + DateTime.Now.Minute;
-                string imagePath = folder + guid + extension;
-
-                using (FileStream fileStream = File.Create(path + imagePath))
-                {
-                    image.Files.CopyTo(fileStream);
-                    fileStream.Flush();
-                    carImage.ImagePath = (imagePath).Replace("\\", "/");
-                }
-            }
-
-            carImage.Date = DateTime.Now;
-            return new SuccessDataResult<CarImage>(carImage);
+                CarId = carImage.CarId,
+                Date = time,
+                ImagePath = newImagePath
+            };
         }
 
-        private IResult DeleteFile(CarImage carImage)
+        private void DeletedFile(CarImage carImage)
         {
-            var result = _carImageDal.Get(c => c.Id == carImage.Id);
-            string path = Directory.GetCurrentDirectory() + "\\wwwroot";
-            string folder = "\\images\\";
-            string defaultImage = (folder + "default_img.png").Replace("\\", "/");
+            var image = _carImageDal.Get(c => c.Id == carImage.Id);
 
-            try
-            {
-                if(result.ImagePath != defaultImage)
-                {
-                    File.Delete(path + result.ImagePath);
-                }
-            }
-            catch (Exception)
-            {
-                return new ErrorResult();
-            }
-
-            return new SuccessResult();
+            FileHelper.DeleteFile(image.ImagePath);
         }
 
-        private IDataResult<CarImage> UpdateFile(Image image, CarImage carImage)
+        private CarImage UpdatedFile(IFormFile file, CarImage carImage)
         {
-            DeleteFile(carImage);
-            var newImage = CreateFile(image, carImage).Data;
+            var image = _carImageDal.Get(c => c.Id == carImage.Id);
+            var newImagePath = FileHelper.UpdateFile(file, image.ImagePath).Data;
+            var time = DateTime.Now;
 
-            return new SuccessDataResult<CarImage>(newImage);
+            image.CarId = carImage.CarId;
+            image.Date = time;
+            image.ImagePath = newImagePath;
+
+
+            return image;
         }
 
         private IResult CheckIfCarImageIdIsNotExists(int carImageId)
