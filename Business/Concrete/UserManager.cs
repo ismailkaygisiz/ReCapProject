@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac;
 using Core.Entities.Concrete;
@@ -40,7 +41,13 @@ namespace Business.Concrete
 
         public IDataResult<User> GetUserByEmail(string email)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
+            var result = _userDal.Get(u => u.Email == email);
+            if(result != null)
+            {
+                return new SuccessDataResult<User>(result);
+            }
+
+            return new ErrorDataResult<User>();
         }
 
         public IDataResult<List<User>> GetByFirstName(string firstName)

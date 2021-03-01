@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
-namespace Business.Constans
+namespace Business.Constants
 {
     public static class Messages
     {
@@ -14,5 +15,7 @@ namespace Business.Constans
         public static string SuccessfulRegister = "Successful Register";
         public static string UserIsAlreadyExists = "User Is Already Exists";
         public static string AccessTokenCreated = "Access Token Created";
+
+        public static string AuthorizationDenied =  "Yetkiniz yok";
     }
 }

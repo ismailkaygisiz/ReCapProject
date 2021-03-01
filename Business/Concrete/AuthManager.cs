@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Business.Constans;
+using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Entities.DTOs;
 using Core.Utilities.Business;
@@ -78,7 +78,7 @@ namespace Business.Concrete
 
         private IResult CheckIfUserIsAlreadyExists(string email)
         {
-            if (_userService.GetUserByEmail(email) != null)
+            if (!_userService.GetUserByEmail(email).Success)
             {
                 return new ErrorResult(Messages.UserIsAlreadyExists);
             }
@@ -89,7 +89,7 @@ namespace Business.Concrete
         private IResult CheckIfUserIsNotExists(string email)
         {
             var user = _userService.GetUserByEmail(email);
-            if (user == null)
+            if (!user.Success)
             {
                 return new ErrorResult(Messages.UserIsNotExists);
             }
@@ -100,6 +100,11 @@ namespace Business.Concrete
         private IResult CheckIfUserPasswordIsNotTrue(string email, string password)
         {
             var user = _userService.GetUserByEmail(email);
+            if(!user.Success)
+            {
+                return new ErrorResult(Messages.UserIsNotExists);
+            }
+
             if (!HashingHelper.VerifyPasswordHash(password, user.Data.PasswordHash, user.Data.PasswordSalt))
             {
                 return new ErrorResult(Messages.PasswordIsNotTrue);
