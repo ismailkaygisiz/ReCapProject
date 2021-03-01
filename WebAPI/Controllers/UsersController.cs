@@ -49,7 +49,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyemail")]
         public IActionResult GetByEmail(string email)
         {
-            var result = _userService.GetByEmail(email);
+            var result = _userService.GetUserByEmail(email);
 
             if (result.Success)
             {
