@@ -17,21 +17,22 @@ namespace Core.Utilities.Helpers
 
             if (file == null)
             {
-                return new SuccessDataResult<string>(defaultImage,"");
+                return new SuccessDataResult<string>(defaultImage, "");
             }
-            else
-            {
-                string extension = Path.GetExtension(file.FileName);
-                string guid = Guid.NewGuid().ToString() + DateTime.Now.Millisecond + "_" + DateTime.Now.Hour + extension + "_" + DateTime.Now.Minute;
-                string imagePath = folder + guid + extension;
 
-                using (FileStream fileStream = File.Create(path + imagePath))
-                {
-                    file.CopyTo(fileStream);
-                    fileStream.Flush();
-                    return new SuccessDataResult<string>((imagePath).Replace("\\", "/"), "");
-                }
+            string extension = Path.GetExtension(file.FileName);
+            string guid = Guid.NewGuid().ToString() + DateTime.Now.Millisecond + "_" + DateTime.Now.Hour + extension + "_" + DateTime.Now.Minute;
+            string imagePath = folder + guid + extension;
+
+            using (FileStream fileStream = File.Create(path + imagePath))
+            {
+                file.CopyTo(fileStream);
+                fileStream.Flush();
+                imagePath = (imagePath).Replace("\\", "/");
+
+                return new SuccessDataResult<string>(imagePath, "");
             }
+
         }
 
         public static IResult DeleteFile(string filePath)
