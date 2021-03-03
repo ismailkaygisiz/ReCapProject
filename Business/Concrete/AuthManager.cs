@@ -58,6 +58,46 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>(result.Message);
             }
 
+
+            User user = CreateUser(userForRegisterDto, password).Data;
+            _userService.Add(user);
+            return new SuccessDataResult<User>(user, Messages.SuccessfulRegister);
+        }
+
+        private IResult CheckIfUserIsAlreadyExists(string email)
+        {
+            if (_userService.GetUserByEmail(email).Data != null)
+            {
+                return new ErrorResult(Messages.UserIsAlreadyExists);
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfUserIsNotExists(string email)
+        {
+            var user = _userService.GetUserByEmail(email).Data;
+            if (user == null)
+            {
+                return new ErrorResult(Messages.UserIsNotExists);
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfUserPasswordIsNotTrue(string email, string password)
+        {
+            var user = _userService.GetUserByEmail(email).Data;
+            if (!HashingHelper.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt) && user != null)
+            {
+                return new ErrorResult(Messages.PasswordIsNotTrue);
+            }
+
+            return new SuccessResult();
+        }
+
+        private IDataResult<User> CreateUser(UserForRegisterDto userForRegisterDto, string password)
+        {
             byte[] passwordHash;
             byte[] passwordSalt;
             HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
@@ -72,40 +112,7 @@ namespace Business.Concrete
                 Status = true
             };
 
-            _userService.Add(user);
-            return new SuccessDataResult<User>(user, Messages.SuccessfulRegister);
-        }
-
-        private IResult CheckIfUserIsAlreadyExists(string email)
-        {
-            if (_userService.GetUserByEmail(email).Success)
-            {
-                return new ErrorResult(Messages.UserIsAlreadyExists);
-            }
-
-            return new SuccessResult();
-        }
-
-        private IResult CheckIfUserIsNotExists(string email)
-        {
-            var user = _userService.GetUserByEmail(email);
-            if (!user.Success)
-            {
-                return new ErrorResult(Messages.UserIsNotExists);
-            }
-
-            return new SuccessResult();
-        }
-
-        private IResult CheckIfUserPasswordIsNotTrue(string email, string password)
-        {
-            var user = _userService.GetUserByEmail(email);
-            if (!HashingHelper.VerifyPasswordHash(password, user.Data.PasswordHash, user.Data.PasswordSalt) && user.Success)
-            {
-                return new ErrorResult(Messages.PasswordIsNotTrue);
-            }
-
-            return new SuccessResult();
+            return new SuccessDataResult<User>(user);
         }
     }
 }

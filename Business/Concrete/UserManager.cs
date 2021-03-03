@@ -38,13 +38,7 @@ namespace Business.Concrete
 
         public IDataResult<User> GetUserByEmail(string email)
         {
-            var result = _userDal.Get(u => u.Email == email);
-            if (result != null)
-            {
-                return new SuccessDataResult<User>(result);
-            }
-
-            return new ErrorDataResult<User>();
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
         }
 
         public IDataResult<List<User>> GetByFirstName(string firstName)
