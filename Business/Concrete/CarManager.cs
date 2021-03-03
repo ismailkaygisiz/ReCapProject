@@ -1,16 +1,15 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac;
-using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -23,17 +22,36 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
+            IResult result = BusinessRules.Run(
+
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
+            _carDal.Add(car);
             return new SuccessResult();
         }
 
         public IResult Delete(Car car)
         {
+            IResult result = BusinessRules.Run(
+                CheckIfCarIdIsNotExists(car.Id)
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _carDal.Delete(car);
             return new SuccessResult();
-
         }
 
         [SecuredOperation("Car.GetAll")]
@@ -74,13 +92,29 @@ namespace Business.Concrete
 
         public IResult Update(Car car)
         {
-            if (car.DailyPrice > 0 && car.Description.Length > 2)
-            {
-                _carDal.Update(car);
-                return new SuccessResult();
+            IResult result = BusinessRules.Run(
+                CheckIfCarIdIsNotExists(car.Id)
+                );
 
+
+            if (result != null)
+            {
+                return result;
             }
-            return new ErrorResult();
+
+            _carDal.Update(car);
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfCarIdIsNotExists(int carId)
+        {
+            var result = _carDal.Get(c => c.Id == carId);
+            if (result == null)
+            {
+                return new ErrorResult(Messages.CarIsNotExists);
+            }
+
+            return new SuccessResult();
         }
     }
 }

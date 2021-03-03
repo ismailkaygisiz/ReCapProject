@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Business.Abstract;
+﻿using Business.Abstract;
 using Core.Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,7 +38,7 @@ namespace WebAPI.Controllers
         {
 
             var registerResult = _authService.Register(userForRegisterDto, userForRegisterDto.Password);
-            if(registerResult.Data == null)
+            if (registerResult.Data == null)
             {
                 return BadRequest(registerResult.Message);
             }

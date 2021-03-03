@@ -9,9 +9,6 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -103,12 +100,7 @@ namespace Business.Concrete
         private IResult CheckIfUserPasswordIsNotTrue(string email, string password)
         {
             var user = _userService.GetUserByEmail(email);
-            if(!user.Success)
-            {
-                return new ErrorResult(Messages.UserIsNotExists);
-            }
-
-            if (!HashingHelper.VerifyPasswordHash(password, user.Data.PasswordHash, user.Data.PasswordSalt))
+            if (!HashingHelper.VerifyPasswordHash(password, user.Data.PasswordHash, user.Data.PasswordSalt) && user.Success)
             {
                 return new ErrorResult(Messages.PasswordIsNotTrue);
             }

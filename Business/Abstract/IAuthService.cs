@@ -2,9 +2,6 @@
 using Core.Entities.DTOs;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Security.JWT;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Abstract
 {

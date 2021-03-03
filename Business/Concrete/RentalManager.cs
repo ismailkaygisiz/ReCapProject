@@ -1,13 +1,14 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -23,11 +24,13 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            var result = _rentalDal.GetAll(r => r.CarId == rental.CarId && r.ReturnDate == null);
+            IResult result = BusinessRules.Run(
+                CheckIfReturnDateNull(rental.CarId)
+                );
 
-            if (result.Count > 0)
+            if (result != null)
             {
-                return new ErrorResult();
+                return result;
             }
 
             _rentalDal.Add(rental);
@@ -36,6 +39,15 @@ namespace Business.Concrete
 
         public IResult Delete(Rental rental)
         {
+            IResult result = BusinessRules.Run(
+                CheckIfRentalIdIsNotExists(rental.Id)
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _rentalDal.Delete(rental);
             return new SuccessResult();
         }
@@ -72,7 +84,40 @@ namespace Business.Concrete
 
         public IResult Update(Rental rental)
         {
+            IResult result = BusinessRules.Run(
+                CheckIfRentalIdIsNotExists(rental.Id)
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _rentalDal.Update(rental);
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfReturnDateNull(int carId)
+        {
+            var result = _rentalDal.GetAll(r => r.CarId == carId && r.ReturnDate == null);
+
+            if (result.Count > 0)
+            {
+                return new ErrorResult(Messages.CarIsNotReturned);
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfRentalIdIsNotExists(int rentalId)
+        {
+            var result = _rentalDal.Get(r => r.Id == rentalId);
+
+            if (result == null)
+            {
+                return new ErrorResult(Messages.RentalIsNotExists);
+            }
+
             return new SuccessResult();
         }
     }

@@ -1,13 +1,13 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -23,12 +23,30 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CustomerValidator))]
         public IResult Add(Customer customer)
         {
+            IResult result = BusinessRules.Run(
+
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _customerDal.Add(customer);
             return new SuccessResult();
         }
 
         public IResult Delete(Customer customer)
         {
+            IResult result = BusinessRules.Run(
+                CheckIfCustomerIdIsNotExists(customer.Id)
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _customerDal.Delete(customer);
             return new SuccessResult();
         }
@@ -55,7 +73,27 @@ namespace Business.Concrete
 
         public IResult Update(Customer customer)
         {
+            IResult result = BusinessRules.Run(
+                CheckIfCustomerIdIsNotExists(customer.Id)
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _customerDal.Update(customer);
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfCustomerIdIsNotExists(int customerId)
+        {
+            var result = _customerDal.Get(c => c.Id == customerId);
+            if (result == null)
+            {
+                return new ErrorResult(Messages.CustomerIsNotExists);
+            }
+
             return new SuccessResult();
         }
     }

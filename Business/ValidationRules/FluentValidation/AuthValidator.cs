@@ -1,10 +1,5 @@
-﻿using Core.Aspects.Autofac;
-using Core.Entities.DTOs;
+﻿using Core.Entities.DTOs;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Business.ValidationRules.FluentValidation
 {

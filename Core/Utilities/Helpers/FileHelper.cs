@@ -2,7 +2,6 @@
 using Core.Utilities.Results.Concrete;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace Core.Utilities.Helpers

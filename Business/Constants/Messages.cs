@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
-
-namespace Business.Constants
+﻿namespace Business.Constants
 {
     public static class Messages
     {
@@ -16,6 +11,14 @@ namespace Business.Constants
         public static string UserIsAlreadyExists = "User Is Already Exists";
         public static string AccessTokenCreated = "Access Token Created";
 
-        public static string AuthorizationDenied =  "Yetkiniz yok";
+        public static string AuthorizationDenied = "Yetkiniz yok";
+        public static string DailyPriceLessThanZero = "Daily Price Must Be Greater Than Zero";
+        public static string DescriptionLengthLessThanTwo = "Description Length Must Be Greater Than Two";
+        public static string CarIsNotExists = "Car Is Not Exists";
+        public static string BrandIsNotExists = "Brand Is Not Exists";
+        public static string ColorIsNotExists = "Color Is Not Exists";
+        public static string CarIsNotReturned = "Car Is Not Returned";
+        public static string RentalIsNotExists = "Rental Is Not Exists";
+        public static string CustomerIsNotExists = "Customer Is Not Exists";
     }
 }

@@ -1,13 +1,13 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -23,12 +23,30 @@ namespace Business.Concrete
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
+            IResult result = BusinessRules.Run(
+
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _brandDal.Add(brand);
             return new SuccessResult();
         }
 
         public IResult Delete(Brand brand)
         {
+            IResult result = BusinessRules.Run(
+                CheckIfBrandIdIsNotExists(brand.Id)
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _brandDal.Delete(brand);
             return new SuccessResult();
         }
@@ -45,7 +63,27 @@ namespace Business.Concrete
 
         public IResult Update(Brand brand)
         {
+            IResult result = BusinessRules.Run(
+                CheckIfBrandIdIsNotExists(brand.Id)
+                );
+
+            if (result != null)
+            {
+                return result;
+            }
+
             _brandDal.Update(brand);
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfBrandIdIsNotExists(int brandId)
+        {
+            var result = _brandDal.Get(b => b.Id == brandId);
+            if (result == null)
+            {
+                return new ErrorResult(Messages.BrandIsNotExists);
+            }
+
             return new SuccessResult();
         }
     }
