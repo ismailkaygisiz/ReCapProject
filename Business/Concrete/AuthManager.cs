@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac;
 using Core.Entities.Concrete;
 using Core.Entities.DTOs;
 using Core.Utilities.Business;
@@ -47,6 +49,7 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(user.Data, Messages.SuccessfulLogin);
         }
 
+        [ValidationAspect(typeof(AuthValidator))]
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             IResult result = BusinessRules.Run(
