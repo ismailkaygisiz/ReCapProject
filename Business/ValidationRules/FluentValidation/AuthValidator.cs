@@ -62,7 +62,11 @@ namespace Business.ValidationRules.FluentValidation
         {
             char[] specialCharacters = new char[]
             {
-                '@', '/', '\\', '_', '-'
+                '@', '/', '\\', '_', '-','!','^',
+                '+','$','%','½','&','{','}',
+                '[',']','(',')','=','?','*',
+                '€',';',':',',','.','<','>',
+                '"','\'','#'
             };
 
             return ForController(arg, specialCharacters);
