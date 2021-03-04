@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
@@ -21,6 +23,8 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CustomerValidator))]
+        [TransactionScopeAspect]
+        [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Add(Customer customer)
         {
             IResult result = BusinessRules.Run(
@@ -36,6 +40,8 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [TransactionScopeAspect]
+        [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Delete(Customer customer)
         {
             IResult result = BusinessRules.Run(
@@ -51,26 +57,33 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [CacheAspect]
         public IDataResult<List<Customer>> GetAll()
         {
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll());
         }
 
+        [CacheAspect]
         public IDataResult<List<Customer>> GetByCompanyName(string companyName)
         {
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(c => c.Companyname == companyName));
         }
 
+        [CacheAspect]
         public IDataResult<Customer> GetById(int id)
         {
             return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id));
         }
 
+        [CacheAspect]
         public IDataResult<Customer> GetByUserId(int userId)
         {
             return new SuccessDataResult<Customer>(_customerDal.Get(c => c.UserId == userId));
         }
 
+        [ValidationAspect(typeof(CustomerValidator))]
+        [TransactionScopeAspect]
+        [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Update(Customer customer)
         {
             IResult result = BusinessRules.Run(

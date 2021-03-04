@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Entities.DTOs;
@@ -23,6 +25,7 @@ namespace Business.Concrete
             _tokenHelper = tokenHelper;
         }
 
+        [CacheAspect]
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
             var roles = _userService.GetClaims(user).Data;
@@ -30,6 +33,8 @@ namespace Business.Concrete
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
 
+        [TransactionScopeAspect]
+        [CacheRemoveAspect("IAuthService.Get")]
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
             IResult result = BusinessRules.Run(
@@ -47,6 +52,8 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(AuthValidator))]
+        [TransactionScopeAspect]
+        [CacheRemoveAspect("IAuthService.Get")]
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             IResult result = BusinessRules.Run(
