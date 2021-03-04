@@ -9,6 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+
 recap.sql
 
 # User-specific files (MonoDevelop/Xamarin Studio)
