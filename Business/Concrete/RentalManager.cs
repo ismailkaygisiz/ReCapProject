@@ -11,6 +11,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -21,6 +22,11 @@ namespace Business.Concrete
         public RentalManager(IRentalDal rentalDal)
         {
             _rentalDal = rentalDal;
+        }
+
+        public IDataResult<List<RentalDetailDto>> GetRentalDetails()
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
         }
 
         [ValidationAspect(typeof(RentalValidator))]
@@ -37,6 +43,7 @@ namespace Business.Concrete
                 return result;
             }
 
+            rental.RentDate = DateTime.Now;
             _rentalDal.Add(rental);
             return new SuccessResult();
         }
@@ -58,7 +65,6 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        [CacheAspect]
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());

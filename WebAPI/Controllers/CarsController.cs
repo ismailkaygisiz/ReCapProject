@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _carService.GetAll();
+            var result = _carService.GetCarDetails();
             if (result.Success)
             {
                 return Ok(result);
