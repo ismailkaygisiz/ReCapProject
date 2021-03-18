@@ -113,6 +113,9 @@ namespace Business.Concrete
                 return result;
             }
 
+            var newRental = GetById(rental.Id).Data;
+            rental.RentDate = newRental.RentDate;
+
             _rentalDal.Update(rental);
             return new SuccessResult();
         }

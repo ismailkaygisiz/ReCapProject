@@ -34,6 +34,11 @@ namespace DataAccess.Concrete.InMemory
             _cars.Remove(carToDelete);
         }
 
+        public List<CarDetailDto> GetCarDetails(Expression<Func<Car, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public Car Get(Expression<Func<Car, bool>> filter)
         {
             throw new NotImplementedException();
@@ -52,11 +57,6 @@ namespace DataAccess.Concrete.InMemory
         public List<Car> GetById(int brandId)
         {
             return _cars.Where(c => c.BrandId == brandId).ToList();
-        }
-
-        public List<CarDetailDto> GetCarDetails()
-        {
-            throw new NotImplementedException();
         }
 
         public void Update(Car car)
