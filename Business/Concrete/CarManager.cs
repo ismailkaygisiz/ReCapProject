@@ -66,33 +66,33 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        public IDataResult<List<Car>> GetByBrandId(int brandId)
+        public IDataResult<List<CarDetailDto>> GetByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c=>c.BrandId == brandId));
         }
 
         [CacheAspect]
-        public IDataResult<List<Car>> GetByColorId(int colorId)
+        public IDataResult<List<CarDetailDto>> GetByColorId(int colorId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c=>c.ColorId == colorId));
         }
 
         [CacheAspect]
-        public IDataResult<List<Car>> GetByDailyPrice(int min, int max)
+        public IDataResult<List<CarDetailDto>> GetByDailyPrice(int min, int max)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.DailyPrice >= min && c.DailyPrice <= max));
         }
 
         [CacheAspect]
-        public IDataResult<Car> GetById(int id)
+        public IDataResult<CarDetailDto> GetById(int id)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
+            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetailsById(id));
         }
 
         [CacheAspect]
-        public IDataResult<List<Car>> GetByModelYear(int modelYear)
+        public IDataResult<List<CarDetailDto>> GetByModelYear(int modelYear)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ModelYear == modelYear));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails( c=> c.ModelYear == modelYear));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()

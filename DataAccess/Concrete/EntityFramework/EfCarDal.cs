@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
-                var result = from car in context.Cars
+                var result = from car in  filter == null ? context.Cars : context.Cars.Where(filter)
                     join brand in context.Brands on car.BrandId equals brand.Id
                     join color in context.Colors on car.ColorId equals color.Id
                     join carImage in context.CarImages on car.Id equals carImage.CarId
@@ -31,6 +31,29 @@ namespace DataAccess.Concrete.EntityFramework
                     };
 
                 return result.ToList();
+            }
+        }
+
+        public CarDetailDto GetCarDetailsById(int id)
+        {
+            using (ReCapProjectContext context = new ReCapProjectContext())
+            {
+                var result = from car in context.Cars.Where(c=>c.Id == id)
+                    join brand in context.Brands on car.BrandId equals brand.Id
+                    join color in context.Colors on car.ColorId equals color.Id
+                    join carImage in context.CarImages on car.Id equals carImage.CarId
+                    select new CarDetailDto()
+                    {
+                        Id = car.Id,
+                        BrandName = brand.BrandName,
+                        CarName = car.Description,
+                        ColorName = color.ColorName,
+                        DailyPrice = car.DailyPrice,
+                        ModelYear = car.ModelYear,
+                        ImagePath = carImage.ImagePath
+                    };
+
+                return result.SingleOrDefault();
             }
         }
     }
