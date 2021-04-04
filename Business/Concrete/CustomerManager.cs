@@ -4,12 +4,13 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
-using Core.Utilities.Business;
+using Core.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
+using System.Linq;
 using Entities.DTOs;
 
 namespace Business.Concrete
@@ -17,10 +18,14 @@ namespace Business.Concrete
     public class CustomerManager : ICustomerService
     {
         private ICustomerDal _customerDal;
+        private IRentalService _rentalService;
+        private IPaymentService _paymentService;
 
-        public CustomerManager(ICustomerDal customerDal)
+        public CustomerManager(ICustomerDal customerDal, IRentalService rentalService, IPaymentService paymentService)
         {
             _customerDal = customerDal;
+            _rentalService = rentalService;
+            _paymentService = paymentService;
         }
 
         public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
@@ -59,6 +64,10 @@ namespace Business.Concrete
                 return result;
             }
 
+            // This action deletes the rentals of the customer's
+            _rentalService.GetByCustomerId(customer.Id).Data.ForEach(r=>_rentalService.Delete(r));
+            _paymentService.GetPaymentsByCustomerId(customer.Id).Data.ForEach(p=>_paymentService.Delete(p));
+
             _customerDal.Delete(customer);
             return new SuccessResult();
         }
@@ -76,9 +85,9 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        public IDataResult<Customer> GetById(int id)
+        public IDataResult<CustomerDetailDto> GetById(int id)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id));
+            return new SuccessDataResult<CustomerDetailDto>(_customerDal.GetCustomerDetails(c => c.Id == id).SingleOrDefault());
         }
 
         [CacheAspect]

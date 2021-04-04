@@ -16,4 +16,10 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Utilities\Constants" />
+    <Folder Include="Utilities\Helpers\FileHelpers" />
+    <Folder Include="Utilities\Helpers\MailHelpers" />
+  </ItemGroup>
+
 </Project>

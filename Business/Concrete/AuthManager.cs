@@ -6,7 +6,7 @@ using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Entities.DTOs;
-using Core.Utilities.Business;
+using Core.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using Core.Utilities.Security.Hashing;
@@ -64,7 +64,6 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<User>(result.Message);
             }
-
 
             User user = CreateUser(userForRegisterDto, password).Data;
             _userService.Add(user);

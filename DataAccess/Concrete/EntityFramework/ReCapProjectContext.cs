@@ -8,8 +8,10 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source = (localdb)\MSSQLLocalDB;Database=ReCapProject;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(
+                @"Data Source = (localdb)\MSSQLLocalDB;Database=ReCapProject;Trusted_Connection=true");
         }
+
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
@@ -19,5 +21,6 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<CarImage> CarImages { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<Payment> Payments { get; set; }
     }
 }

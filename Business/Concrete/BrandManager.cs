@@ -4,7 +4,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
-using Core.Utilities.Business;
+using Core.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -16,10 +16,12 @@ namespace Business.Concrete
     public class BrandManager : IBrandService
     {
         private IBrandDal _brandDal;
+        private ICarService _carService;
 
-        public BrandManager(IBrandDal brandDal)
+        public BrandManager(IBrandDal brandDal, ICarService carService)
         {
             _brandDal = brandDal;
+            _carService = carService;
         }
 
         [ValidationAspect(typeof(BrandValidator))]
@@ -52,6 +54,8 @@ namespace Business.Concrete
             {
                 return result;
             }
+
+            _carService.GetCarsByBrandId(brand.Id).Data.ForEach(c=>_carService.Delete(c));
 
             _brandDal.Delete(brand);
             return new SuccessResult();

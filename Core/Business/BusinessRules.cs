@@ -1,6 +1,6 @@
 ﻿using Core.Utilities.Results.Abstract;
 
-namespace Core.Utilities.Business
+namespace Core.Business
 {
     public class BusinessRules
     {

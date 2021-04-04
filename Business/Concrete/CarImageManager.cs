@@ -4,7 +4,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
-using Core.Utilities.Business;
+using Core.Business;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
@@ -25,13 +25,14 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
+        [ValidationAspect(typeof(CarImageValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Add(CarImage carImage, IFormFile file)
         {
             IResult result = BusinessRules.Run(
                 CheckIfCarImageLimitExceeded(carImage.CarId)
-                );
+            );
 
             if (result != null)
             {
@@ -44,13 +45,14 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [ValidationAspect(typeof(CarImageValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Delete(CarImage carImage)
         {
             IResult result = BusinessRules.Run(
                 CheckIfCarImageIdIsNotExists(carImage.Id)
-                );
+            );
 
             if (result != null)
             {
@@ -61,7 +63,6 @@ namespace Business.Concrete
             _carImageDal.Delete(carImage);
 
             return new SuccessResult();
-
         }
 
         [CacheAspect]
@@ -81,6 +82,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == carId));
         }
 
+        [ValidationAspect(typeof(CarImageValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Update(CarImage carImage, IFormFile file)
@@ -88,7 +90,7 @@ namespace Business.Concrete
             IResult result = BusinessRules.Run(
                 CheckIfCarImageIdIsNotExists(carImage.Id),
                 CheckIfCarImageLimitExceeded(carImage.CarId)
-                );
+            );
 
             if (result != null)
             {

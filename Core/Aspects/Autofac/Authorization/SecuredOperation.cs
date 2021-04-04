@@ -5,11 +5,8 @@ using Core.Utilities.IoC;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Business.Constants;
 
-namespace Business.BusinessAspects.Autofac
+namespace Core.Aspects.Autofac.Authorization
 {
     public class SecuredOperation : MethodInterception
     {
@@ -33,7 +30,7 @@ namespace Business.BusinessAspects.Autofac
                 }
             }
 
-            throw new Exception(Messages.AuthorizationDenied);
+            throw new Exception("Yetkiniz Yok");
         }
     }
 }

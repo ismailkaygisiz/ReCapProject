@@ -4,7 +4,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
-using Core.Utilities.Business;
+using Core.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -16,10 +16,12 @@ namespace Business.Concrete
     public class ColorManager : IColorService
     {
         private IColorDal _colorDal;
+        private ICarService _carService;
 
-        public ColorManager(IColorDal colorDal)
+        public ColorManager(IColorDal colorDal, ICarService carService)
         {
             _colorDal = colorDal;
+            _carService = carService;
         }
 
         [ValidationAspect(typeof(ColorValidator))]
@@ -52,6 +54,8 @@ namespace Business.Concrete
             {
                 return result;
             }
+
+            _carService.GetCarsByColorId(color.Id).Data.ForEach(c=>_carService.Delete(c));
 
             _colorDal.Delete(color);
             return new SuccessResult();

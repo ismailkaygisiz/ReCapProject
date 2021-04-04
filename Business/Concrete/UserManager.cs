@@ -1,5 +1,4 @@
 ﻿using Business.Abstract;
-using Business.BusinessAspects.Autofac;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Transaction;
@@ -15,10 +14,12 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         private IUserDal _userDal;
+        private ICustomerService _customerService;
 
-        public UserManager(IUserDal userDal)
+        public UserManager(IUserDal userDal, ICustomerService customerService)
         {
             _userDal = userDal;
+            _customerService = customerService;
         }
 
         [ValidationAspect(typeof(UserValidator))]
@@ -34,6 +35,8 @@ namespace Business.Concrete
         [CacheRemoveAspect("IUserService.Get")]
         public IResult Delete(User user)
         {
+            _customerService.Delete(_customerService.GetByUserId(user.Id).Data);
+
             _userDal.Delete(user);
             return new SuccessResult();
         }

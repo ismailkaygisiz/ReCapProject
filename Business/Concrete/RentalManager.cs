@@ -4,7 +4,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
-using Core.Utilities.Business;
+using Core.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -43,7 +43,6 @@ namespace Business.Concrete
                 return result;
             }
 
-            rental.RentDate = DateTime.Now;
             _rentalDal.Add(rental);
             return new SuccessResult();
         }
@@ -70,10 +69,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
         }
 
-        [CacheAspect]
-        public IDataResult<Rental> GetByCarId(int carId)
+        public IDataResult<List<Rental>> GetByCarId(int carId)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.CarId == carId));
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.CarId == carId));
         }
 
         [CacheAspect]
@@ -113,8 +111,7 @@ namespace Business.Concrete
                 return result;
             }
 
-            var newRental = GetById(rental.Id).Data;
-            rental.RentDate = newRental.RentDate;
+            rental.ReturnDate = DateTime.Now;
 
             _rentalDal.Update(rental);
             return new SuccessResult();
@@ -123,7 +120,6 @@ namespace Business.Concrete
         private IResult CheckIfReturnDateNull(int carId)
         {
             var result = _rentalDal.GetAll(r => r.CarId == carId && r.ReturnDate == null);
-
             if (result.Count > 0)
             {
                 return new ErrorResult(Messages.CarIsNotReturned);
@@ -135,7 +131,6 @@ namespace Business.Concrete
         private IResult CheckIfRentalIdIsNotExists(int rentalId)
         {
             var result = _rentalDal.Get(r => r.Id == rentalId);
-
             if (result == null)
             {
                 return new ErrorResult(Messages.RentalIsNotExists);
