@@ -5,7 +5,7 @@ using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Business;
-using Core.Utilities.Helpers;
+using Core.Utilities.Helpers.FileHelpers;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -19,10 +19,12 @@ namespace Business.Concrete
     public class CarImageManager : ICarImageService
     {
         private ICarImageDal _carImageDal;
+        private IFileHelper _fileHelper;
 
-        public CarImageManager(ICarImageDal carImageDal)
+        public CarImageManager(ICarImageDal carImageDal, IFileHelper fileHelper)
         {
             _carImageDal = carImageDal;
+            _fileHelper = fileHelper;
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
@@ -45,7 +47,6 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        [ValidationAspect(typeof(CarImageValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Delete(CarImage carImage)
@@ -105,7 +106,7 @@ namespace Business.Concrete
 
         private CarImage CreatedFile(IFormFile file, CarImage carImage)
         {
-            var newImagePath = FileHelper.CreateFile(file).Data;
+            var newImagePath = _fileHelper.CreateFile(file).Data;
             var time = DateTime.Now;
 
             return new CarImage
@@ -120,13 +121,13 @@ namespace Business.Concrete
         {
             var image = _carImageDal.Get(c => c.Id == carImage.Id);
 
-            FileHelper.DeleteFile(image.ImagePath);
+            _fileHelper.DeleteFile(image.ImagePath);
         }
 
         private CarImage UpdatedFile(IFormFile file, CarImage carImage)
         {
             var image = _carImageDal.Get(c => c.Id == carImage.Id);
-            var newImagePath = FileHelper.UpdateFile(file, image.ImagePath).Data;
+            var newImagePath = _fileHelper.UpdateFile(file, image.ImagePath).Data;
             var time = DateTime.Now;
 
             image.CarId = carImage.CarId;

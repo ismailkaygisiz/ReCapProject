@@ -3,6 +3,9 @@ using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
+using Core.Business;
+using Core.DataAccess;
+using Core.Utilities.Helpers.FileHelpers;
 using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
@@ -35,6 +38,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfPaymentDal>().As<IPaymentDal>().SingleInstance();
 
             builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
+            builder.RegisterType<RootFileHelper>().As<IFileHelper>().SingleInstance();
 
             builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance();
 
