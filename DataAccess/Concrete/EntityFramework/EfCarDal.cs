@@ -26,6 +26,17 @@ namespace DataAccess.Concrete.EntityFramework
                         ColorName = color.ColorName,
                         DailyPrice = car.DailyPrice,
                         ModelYear = car.ModelYear,
+                        ImagePaths = (
+                            from carImage in context.CarImages
+                            where car.Id == carImage.CarId
+                            select new CarImage()
+                            {
+                                Id = carImage.Id,
+                                CarId = carImage.CarId,
+                                ImagePath = carImage.ImagePath,
+                                Date = carImage.Date
+                            }
+                        ).ToList()
                     };
 
                 return result.ToList();
@@ -47,27 +58,20 @@ namespace DataAccess.Concrete.EntityFramework
                         ColorName = color.ColorName,
                         DailyPrice = car.DailyPrice,
                         ModelYear = car.ModelYear,
+                        ImagePaths = (
+                            from carImage in context.CarImages
+                            where car.Id == carImage.CarId
+                            select new CarImage()
+                            {
+                                Id = carImage.Id,
+                                CarId = carImage.CarId,
+                                ImagePath = carImage.ImagePath,
+                                Date = carImage.Date
+                            }
+                        ).ToList()
                     };
 
                 return result.SingleOrDefault();
-            }
-        }
-
-        public List<CarImage> GetCarImages(int id)
-        {
-            using (ReCapProjectContext context = new ReCapProjectContext())
-            {
-                var result = from car in context.Cars.Where(c => c.Id == id)
-                    join carImage in context.CarImages on car.Id equals carImage.CarId
-                    select new CarImage()
-                    {
-                        Id = carImage.Id,
-                        CarId = carImage.CarId,
-                        Date = carImage.Date,
-                        ImagePath = carImage.ImagePath
-                    };
-
-                return result.ToList();
             }
         }
     }

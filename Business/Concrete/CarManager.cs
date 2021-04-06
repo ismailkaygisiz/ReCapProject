@@ -76,7 +76,6 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailDto>> GetByBrandId(int brandId)
         {
             var result = _carDal.GetCarDetails(c => c.BrandId == brandId);
-            GetCarImages(result);
 
             return new SuccessDataResult<List<CarDetailDto>>(result);
         }
@@ -90,7 +89,6 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailDto>> GetByColorId(int colorId)
         {
             var result = _carDal.GetCarDetails(c => c.ColorId == colorId);
-            GetCarImages(result);
 
             return new SuccessDataResult<List<CarDetailDto>>(result);
         }
@@ -104,7 +102,6 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailDto>> GetByDailyPrice(int min, int max)
         {
             var result = _carDal.GetCarDetails(c => c.DailyPrice >= min && c.DailyPrice <= max);
-            GetCarImages(result);
 
             return new SuccessDataResult<List<CarDetailDto>>(result);
         }
@@ -112,9 +109,6 @@ namespace Business.Concrete
         public IDataResult<CarDetailDto> GetById(int id)
         {
             var result = _carDal.GetCarDetailsById(id);
-            var images = _carDal.GetCarImages(result.Id);
-
-            result.ImagePaths = images;
 
             return new SuccessDataResult<CarDetailDto>(result);
         }
@@ -123,7 +117,6 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailDto>> GetByModelYear(int modelYear)
         {
             var result = _carDal.GetCarDetails(c => c.ModelYear == modelYear);
-            GetCarImages(result);
 
             return new SuccessDataResult<List<CarDetailDto>>(result);
         }
@@ -131,7 +124,6 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             var result = _carDal.GetCarDetails();
-            GetCarImages(result);
 
             return new SuccessDataResult<List<CarDetailDto>>(result);
         }
@@ -154,7 +146,6 @@ namespace Business.Concrete
                 }
             }
 
-            GetCarImages(result);
             return new SuccessDataResult<List<CarDetailDto>>(result);
         }
 
@@ -189,12 +180,12 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        private void GetCarImages(List<CarDetailDto> carDetailDtos)
+        /*private void GetCarImages(List<CarDetailDto> carDetailDtos)
         {
             foreach (var carDetailDto in carDetailDtos)
             {
                 carDetailDto.ImagePaths = _carDal.GetCarImages(carDetailDto.Id);
             }
-        }
+        }*/
     }
 }

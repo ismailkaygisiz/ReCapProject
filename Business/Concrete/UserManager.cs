@@ -7,8 +7,7 @@ using Core.Entities.Concrete;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using System.Collections.Generic;
-using Core.Business;
-using Core.DataAccess;
+using DataAccess.Abstract;
 
 namespace Business.Concrete
 {
