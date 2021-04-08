@@ -107,12 +107,11 @@ namespace Business.Concrete
         private CarImage CreatedFile(IFormFile file, CarImage carImage)
         {
             var newImagePath = _fileHelper.CreateFile(file).Data;
-            var time = DateTime.Now;
 
             return new CarImage
             {
                 CarId = carImage.CarId,
-                Date = time,
+                Date = DateTime.Now,
                 ImagePath = newImagePath
             };
         }

@@ -24,13 +24,18 @@ namespace Business.Concrete
             _carService = carService;
         }
 
+        public IDataResult<Brand> GetByName(string brandName)
+        {
+            return new SuccessDataResult<Brand>(_brandDal.Get(b=>b.BrandName == brandName));
+        }
+
         [ValidationAspect(typeof(BrandValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("IBrandService.Get")]
         public IResult Add(Brand brand)
         {
             IResult result = BusinessRules.Run(
-
+                CheckIfBrandNameIsAlreadyExists(brand.BrandName)
                 );
 
             if (result != null)
@@ -79,7 +84,8 @@ namespace Business.Concrete
         public IResult Update(Brand brand)
         {
             IResult result = BusinessRules.Run(
-                CheckIfBrandIdIsNotExists(brand.Id)
+                CheckIfBrandIdIsNotExists(brand.Id),
+                CheckIfBrandNameIsAlreadyExists(brand.BrandName)
                 );
 
             if (result != null)
@@ -97,6 +103,17 @@ namespace Business.Concrete
             if (result == null)
             {
                 return new ErrorResult(Messages.BrandIsNotExists);
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfBrandNameIsAlreadyExists(string brandName)
+        {
+            var result = _brandDal.Get(b => b.BrandName == brandName);
+            if (result != null)
+            {
+                return new ErrorResult("Marka Mevcut");
             }
 
             return new SuccessResult();

@@ -42,6 +42,20 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+
+        [HttpGet("getbyname")]
+        public IActionResult GetByName(string colorName)
+        {
+            var result = _colorService.GetByName(colorName);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(Color color)
         {

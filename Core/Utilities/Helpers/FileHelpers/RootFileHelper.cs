@@ -8,12 +8,17 @@ namespace Core.Utilities.Helpers.FileHelpers
 {
     public class RootFileHelper : IFileHelper
     {
+        private string path = Directory.GetCurrentDirectory() + "\\wwwroot";
+        private string folder = "\\images\\";
+        private string defaultImage;
+
+        public RootFileHelper()
+        {
+            defaultImage = (folder + "default_img.png").Replace("\\", "/");
+        }
+
         public IDataResult<string> CreateFile(IFormFile file)
         {
-            string path = Directory.GetCurrentDirectory() + "\\wwwroot";
-            string folder = "\\images\\";
-            string defaultImage = (folder + "default_img.png").Replace("\\", "/");
-
             if (file == null)
             {
                 return new SuccessDataResult<string>(defaultImage, "");
@@ -43,10 +48,7 @@ namespace Core.Utilities.Helpers.FileHelpers
 
         public IResult DeleteFile(string filePath)
         {
-            string path = Directory.GetCurrentDirectory() + "\\wwwroot";
-            string defaultImage = "\\images\\default_img.png";
-
-            if (filePath.Replace("/", "\\") != defaultImage && File.Exists(path + filePath))
+            if (filePath.Replace("\\", "/") != defaultImage && File.Exists(path + filePath))
             {
                 File.Delete(path + filePath);
             }

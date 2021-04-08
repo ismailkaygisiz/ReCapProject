@@ -24,14 +24,19 @@ namespace Business.Concrete
             _carService = carService;
         }
 
+        public IDataResult<Color> GetByName(string colorName)
+        {
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorName == colorName));
+        }
+
         [ValidationAspect(typeof(ColorValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("IColorService.Get")]
         public IResult Add(Color color)
         {
             IResult result = BusinessRules.Run(
-
-               );
+                CheckIfBrandNameIsAlreadyExists(color.ColorName)
+            );
 
             if (result != null)
             {
@@ -47,15 +52,15 @@ namespace Business.Concrete
         public IResult Delete(Color color)
         {
             IResult result = BusinessRules.Run(
-               CheckIfColorIdIsNotExists(color.Id)
-               );
+                CheckIfColorIdIsNotExists(color.Id)
+            );
 
             if (result != null)
             {
                 return result;
             }
 
-            _carService.GetCarsByColorId(color.Id).Data.ForEach(c=>_carService.Delete(c));
+            _carService.GetCarsByColorId(color.Id).Data.ForEach(c => _carService.Delete(c));
 
             _colorDal.Delete(color);
             return new SuccessResult();
@@ -79,8 +84,9 @@ namespace Business.Concrete
         public IResult Update(Color color)
         {
             IResult result = BusinessRules.Run(
-               CheckIfColorIdIsNotExists(color.Id)
-               );
+                CheckIfColorIdIsNotExists(color.Id),
+                CheckIfBrandNameIsAlreadyExists(color.ColorName)
+            );
 
             if (result != null)
             {
@@ -97,6 +103,17 @@ namespace Business.Concrete
             if (result == null)
             {
                 return new ErrorResult(Messages.ColorIsNotExists);
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfBrandNameIsAlreadyExists(string colorName)
+        {
+            var result = _colorDal.Get(b => b.ColorName == colorName);
+            if (result != null)
+            {
+                return new ErrorResult("Renk Mevcut");
             }
 
             return new SuccessResult();
