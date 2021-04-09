@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using System;
+using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
@@ -39,8 +40,9 @@ namespace Business.Concrete
         public IResult Add(Customer customer)
         {
             IResult result = BusinessRules.Run(
-
-                );
+                CheckIfFindeksPointGraterThanValue(customer),
+                CheckIfFindeksPointEqualsZero(customer)
+            );
 
             if (result != null)
             {
@@ -57,7 +59,7 @@ namespace Business.Concrete
         {
             IResult result = BusinessRules.Run(
                 CheckIfCustomerIdIsNotExists(customer.Id)
-                );
+            );
 
             if (result != null)
             {
@@ -65,8 +67,8 @@ namespace Business.Concrete
             }
 
             // This action deletes the rentals of the customer's
-            _rentalService.GetByCustomerId(customer.Id).Data.ForEach(r=>_rentalService.Delete(r));
-            _paymentService.GetPaymentsByCustomerId(customer.Id).Data.ForEach(p=>_paymentService.Delete(p));
+            _rentalService.GetByCustomerId(customer.Id).Data.ForEach(r => _rentalService.Delete(r));
+            _paymentService.GetPaymentsByCustomerId(customer.Id).Data.ForEach(p => _paymentService.Delete(p));
 
             _customerDal.Delete(customer);
             return new SuccessResult();
@@ -81,13 +83,14 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<Customer>> GetByCompanyName(string companyName)
         {
-            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(c => c.Companyname == companyName));
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(c => c.CompanyName == companyName));
         }
 
         [CacheAspect]
         public IDataResult<CustomerDetailDto> GetById(int id)
         {
-            return new SuccessDataResult<CustomerDetailDto>(_customerDal.GetCustomerDetails(c => c.Id == id).SingleOrDefault());
+            return new SuccessDataResult<CustomerDetailDto>(_customerDal.GetCustomerDetails(c => c.Id == id)
+                .SingleOrDefault());
         }
 
         [CacheAspect]
@@ -102,8 +105,9 @@ namespace Business.Concrete
         public IResult Update(Customer customer)
         {
             IResult result = BusinessRules.Run(
-                CheckIfCustomerIdIsNotExists(customer.Id)
-                );
+                CheckIfCustomerIdIsNotExists(customer.Id),
+                CheckIfFindeksPointGraterThanValue(customer)
+            );
 
             if (result != null)
             {
@@ -114,12 +118,46 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        public IResult IncreaseFindeksPoint(Customer customer, decimal carFindeksPoint)
+        {
+            var _customer = _customerDal.Get(c=>c.Id == customer.Id);
+            if (_customer.FindeksPoint < carFindeksPoint)
+            {
+                return new ErrorResult("Findeks Point Not Enough");
+            }
+
+            _customer.FindeksPoint += carFindeksPoint*3;
+
+            Update(_customer);
+            return new SuccessResult();
+        }
+
         private IResult CheckIfCustomerIdIsNotExists(int customerId)
         {
             var result = _customerDal.Get(c => c.Id == customerId);
             if (result == null)
             {
                 return new ErrorResult(Messages.CustomerIsNotExists);
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfFindeksPointEqualsZero(Customer customer)
+        {
+            if (customer.FindeksPoint <= 0)
+            {
+                customer.FindeksPoint = new Random().Next(150, 350);
+            }
+
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfFindeksPointGraterThanValue(Customer customer)
+        {
+            if (customer.FindeksPoint >= 1900)
+            {
+                customer.FindeksPoint = 1900;
             }
 
             return new SuccessResult();

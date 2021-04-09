@@ -13,11 +13,13 @@ namespace Business.ValidationRules.FluentValidation
 
             RuleFor(a => a.LastName).NotEmpty().NotNull();
 
-            RuleFor(a => a.Password).NotEmpty().NotNull().MinimumLength(8);
-            RuleFor(a => a.Password).Must(UpperChar).WithMessage("Password Must Be Contain An Uppercase Character");
-            RuleFor(a => a.Password).Must(LowerChar).WithMessage("Password Must Be Contain An LowerCase Character");
-            RuleFor(a => a.Password).Must(NumberChar).WithMessage("Password Must Be Contain An Number");
-            RuleFor(a => a.Password).Must(SpecialChar).WithMessage("Password Must Be Contain An Special Character");
+            RuleFor(a => a.Password).NotEmpty().NotNull();
+            RuleFor(a => a.Password).MinimumLength(8).WithMessage("Şifre En Az 8 Karakter Olmalıdır");
+            RuleFor(a => a.Password).Must(UpperChar).WithMessage("Şifre En Az Bir Adet Büyük Harf İçermelidir");
+            RuleFor(a => a.Password).Must(LowerChar).WithMessage("Şifre En Az Bir Adet Küçük Harf İçermelidir");
+            RuleFor(a => a.Password).Must(NumberChar).WithMessage("Şifre En Az Bir Adet Sayı İçermelidir");
+            // RuleFor(a => a.Password).Must(SpecialChar).WithMessage("Şifre En Az Bir Adet Özel Karakter İçermelidir");
+
         }
 
         private bool UpperChar(string arg)

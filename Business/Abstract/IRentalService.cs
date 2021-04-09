@@ -15,8 +15,8 @@ namespace Business.Abstract
         IDataResult<List<Rental>> GetByRentDate(DateTime rentDate);
         IDataResult<List<Rental>> GetByReturnDate(DateTime returnDate);
         IDataResult<List<RentalDetailDto>> GetRentalDetails();
-        IResult Add(Rental rental);
+        IResult Add(Rental rental, decimal customerFindeksPoint, decimal carFindeksPoint);
         IResult Delete(Rental rental);
-        IResult Update(Rental rental);
+        IResult Update(Rental rental, decimal customerFindeksPoint, decimal carFindeksPoint);
     }
 }

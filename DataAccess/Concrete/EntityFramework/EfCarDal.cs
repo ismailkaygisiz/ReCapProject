@@ -16,28 +16,29 @@ namespace DataAccess.Concrete.EntityFramework
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
                 var result = from car in filter == null ? context.Cars : context.Cars.Where(filter)
-                    join brand in context.Brands on car.BrandId equals brand.Id
-                    join color in context.Colors on car.ColorId equals color.Id
-                    select new CarDetailDto()
-                    {
-                        Id = car.Id,
-                        BrandName = brand.BrandName,
-                        Description = car.Description,
-                        ColorName = color.ColorName,
-                        DailyPrice = car.DailyPrice,
-                        ModelYear = car.ModelYear,
-                        ImagePaths = (
-                            from carImage in context.CarImages
-                            where car.Id == carImage.CarId
-                            select new CarImage()
-                            {
-                                Id = carImage.Id,
-                                CarId = carImage.CarId,
-                                ImagePath = carImage.ImagePath,
-                                Date = carImage.Date
-                            }
-                        ).ToList()
-                    };
+                             join brand in context.Brands on car.BrandId equals brand.Id
+                             join color in context.Colors on car.ColorId equals color.Id
+                             select new CarDetailDto()
+                             {
+                                 Id = car.Id,
+                                 BrandName = brand.BrandName,
+                                 Description = car.Description,
+                                 ColorName = color.ColorName,
+                                 DailyPrice = car.DailyPrice,
+                                 ModelYear = car.ModelYear,
+                                 ImagePaths = (
+                                     from carImage in context.CarImages
+                                     where car.Id == carImage.CarId
+                                     select new CarImage()
+                                     {
+                                         Id = carImage.Id,
+                                         CarId = carImage.CarId,
+                                         ImagePath = carImage.ImagePath,
+                                         Date = carImage.Date
+                                     }
+                                 ).ToList(),
+                                 FindeksPoint = car.FindeksPoint
+                             };
 
                 return result.ToList();
             }
@@ -48,28 +49,29 @@ namespace DataAccess.Concrete.EntityFramework
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
                 var result = from car in context.Cars.Where(c => c.Id == id)
-                    join brand in context.Brands on car.BrandId equals brand.Id
-                    join color in context.Colors on car.ColorId equals color.Id
-                    select new CarDetailDto()
-                    {
-                        Id = car.Id,
-                        BrandName = brand.BrandName,
-                        Description = car.Description,
-                        ColorName = color.ColorName,
-                        DailyPrice = car.DailyPrice,
-                        ModelYear = car.ModelYear,
-                        ImagePaths = (
-                            from carImage in context.CarImages
-                            where car.Id == carImage.CarId
-                            select new CarImage()
-                            {
-                                Id = carImage.Id,
-                                CarId = carImage.CarId,
-                                ImagePath = carImage.ImagePath,
-                                Date = carImage.Date
-                            }
-                        ).ToList()
-                    };
+                             join brand in context.Brands on car.BrandId equals brand.Id
+                             join color in context.Colors on car.ColorId equals color.Id
+                             select new CarDetailDto()
+                             {
+                                 Id = car.Id,
+                                 BrandName = brand.BrandName,
+                                 Description = car.Description,
+                                 ColorName = color.ColorName,
+                                 DailyPrice = car.DailyPrice,
+                                 ModelYear = car.ModelYear,
+                                 ImagePaths = (
+                                     from carImage in context.CarImages
+                                     where car.Id == carImage.CarId
+                                     select new CarImage()
+                                     {
+                                         Id = carImage.Id,
+                                         CarId = carImage.CarId,
+                                         ImagePath = carImage.ImagePath,
+                                         Date = carImage.Date
+                                     }
+                                 ).ToList(),
+                                 FindeksPoint = car.FindeksPoint
+                             };
 
                 return result.SingleOrDefault();
             }

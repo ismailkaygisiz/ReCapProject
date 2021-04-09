@@ -9,7 +9,7 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(c => c.Description).NotEmpty().NotNull().MinimumLength(2);
 
-            RuleFor(c => c.DailyPrice).NotEmpty().NotNull().GreaterThanOrEqualTo(20);
+            RuleFor(c => c.DailyPrice).NotEmpty().NotNull().GreaterThanOrEqualTo(20).LessThanOrEqualTo(38000);
 
             RuleFor(c => c.BrandId).NotEmpty().NotNull();
 

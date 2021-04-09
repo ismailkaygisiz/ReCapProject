@@ -32,11 +32,12 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("IRentalService.Get")]
-        public IResult Add(Rental rental)
+        public IResult Add(Rental rental, decimal customerFindeksPoint, decimal carFindeksPoint)
         {
             IResult result = BusinessRules.Run(
-                CheckIfReturnDateNull(rental.CarId)
-                );
+                CheckIfReturnDateNull(rental.CarId),
+                CheckIfFindeksPointNotEnough(customerFindeksPoint, carFindeksPoint)
+            );
 
             if (result != null)
             {
@@ -44,7 +45,7 @@ namespace Business.Concrete
             }
 
             _rentalDal.Add(rental);
-            return new SuccessResult();
+            return new SuccessResult("Eklendi");
         }
 
         [TransactionScopeAspect]
@@ -53,7 +54,7 @@ namespace Business.Concrete
         {
             IResult result = BusinessRules.Run(
                 CheckIfRentalIdIsNotExists(rental.Id)
-                );
+            );
 
             if (result != null)
             {
@@ -100,18 +101,17 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("IRentalService.Get")]
-        public IResult Update(Rental rental)
+        public IResult Update(Rental rental, decimal customerFindeksPoint, decimal carFindeksPoint)
         {
             IResult result = BusinessRules.Run(
-                CheckIfRentalIdIsNotExists(rental.Id)
-                );
+                CheckIfRentalIdIsNotExists(rental.Id),
+                CheckIfFindeksPointNotEnough(customerFindeksPoint, carFindeksPoint)
+            );
 
             if (result != null)
             {
                 return result;
             }
-
-            rental.ReturnDate = DateTime.Now;
 
             _rentalDal.Update(rental);
             return new SuccessResult();
@@ -134,6 +134,17 @@ namespace Business.Concrete
             if (result == null)
             {
                 return new ErrorResult(Messages.RentalIsNotExists);
+            }
+
+            return new SuccessResult();
+        }
+
+
+        private IResult CheckIfFindeksPointNotEnough(decimal customerFindeksPoint, decimal carFindeksPoint)
+        {
+            if (carFindeksPoint > customerFindeksPoint)
+            {
+                return new ErrorResult("Findeks Point Not Enough");
             }
 
             return new SuccessResult();

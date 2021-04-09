@@ -30,7 +30,7 @@ namespace Business.Concrete
         {
             var roles = _userService.GetClaims(user).Data;
             var accessToken = _tokenHelper.CreateToken(user, roles);
-            return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
+            return new SuccessDataResult<AccessToken>(accessToken, "Giriş Yapıldı");
         }
 
         [TransactionScopeAspect]
@@ -94,7 +94,7 @@ namespace Business.Concrete
         private IResult CheckIfUserPasswordIsNotTrue(string email, string password)
         {
             var user = _userService.GetUserByEmail(email).Data;
-            if (!HashingHelper.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt) && user != null)
+            if (!HashingHelper.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
                 return new ErrorResult(Messages.PasswordIsNotTrue);
             }

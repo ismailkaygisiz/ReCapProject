@@ -13,5 +13,6 @@ namespace Entities.DTOs
         public decimal DailyPrice { get; set; }
         public int ModelYear { get; set; }
         public List<CarImage> ImagePaths { get; set; }
+        public decimal FindeksPoint { get; set; }
     }
 }

@@ -10,6 +10,7 @@ using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
+using Core.Aspects.Autofac.Authorization;
 
 namespace Business.Concrete
 {
@@ -29,6 +30,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Brand>(_brandDal.Get(b=>b.BrandName == brandName));
         }
 
+        [SecuredOperation("Admin")]
         [ValidationAspect(typeof(BrandValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("IBrandService.Get")]
@@ -47,6 +49,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [SecuredOperation("Admin")]
         [CacheRemoveAspect("IBrandService.Get")]
         [TransactionScopeAspect]
         public IResult Delete(Brand brand)
@@ -78,6 +81,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == brandId));
         }
 
+        [SecuredOperation("Admin")]
         [ValidationAspect(typeof(BrandValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("IBrandService.Get")]

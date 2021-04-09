@@ -42,6 +42,8 @@ namespace Business.Concrete
                 return result;
             }
 
+            car.FindeksPoint = CalculateFindeksPoint(car);
+
             _carDal.Add(car);
             return new SuccessResult();
         }
@@ -165,8 +167,16 @@ namespace Business.Concrete
                 return result;
             }
 
+            car.FindeksPoint = CalculateFindeksPoint(car);
+
             _carDal.Update(car);
             return new SuccessResult();
+        }
+
+        private decimal CalculateFindeksPoint(Car car)
+        {
+            var scoreToAdd = (car.DailyPrice * 5) / 100;
+            return scoreToAdd;
         }
 
         private IResult CheckIfCarIdIsNotExists(int carId)
@@ -179,13 +189,5 @@ namespace Business.Concrete
 
             return new SuccessResult();
         }
-
-        /*private void GetCarImages(List<CarDetailDto> carDetailDtos)
-        {
-            foreach (var carDetailDto in carDetailDtos)
-            {
-                carDetailDto.ImagePaths = _carDal.GetCarImages(carDetailDto.Id);
-            }
-        }*/
     }
 }

@@ -96,9 +96,9 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("add")]
-        public IActionResult Add(Rental rental)
+        public IActionResult Add([FromForm]Rental rental, [FromForm]decimal customerFindeksPoint,[FromForm] decimal carFindeksPoint)
         {
-            var result = _rentalService.Add(rental);
+            var result = _rentalService.Add(rental, customerFindeksPoint, carFindeksPoint);
 
             if (result.Success)
             {
@@ -122,9 +122,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Rental rental)
+        public IActionResult Update([FromForm]Rental rental, [FromForm]decimal customerFindeksPoint,[FromForm] decimal carFindeksPoint)
         {
-            var result = _rentalService.Update(rental);
+            var result = _rentalService.Update(rental, customerFindeksPoint, carFindeksPoint);
 
             if (result.Success)
             {
@@ -133,6 +133,5 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
-
     }
 }
