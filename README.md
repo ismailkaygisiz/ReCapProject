@@ -193,7 +193,7 @@ Aracın detay sayfasındayken Güncelle butonuna bastığınızda güncelleme ek
 <center><img src="https://raw.githubusercontent.com/ismailkaygisiz/ReCapProject/master/Images/Car%20Update.png"></center>
 
 Sadece yetkiniz varken araçları güncelleyebilirsiniz.
-Eğer aracın mevcut resmi yoksa ve resim eklemeden günceşşe butonuna basarsanız araca Ön tanımlı olan resmi atayacaktır. Her resim eklemek istediğinizde aracı güncellemeniz gerekmektedir. Her aracın en fazla 5 resmi bulunabilir. Daha sonra bu resmi değiştirmek istediğinizde güncelle sayfasındayken resmin üzerine tıklamanız yeterlidir. Bu işlemden sonra resmin detay sayfasına yönlendirileceksiniz.
+Eğer aracın mevcut resmi yoksa ve resim eklemeden Güncelle butonuna basarsanız araca Ön tanımlı olan resmi atayacaktır. Her resim eklemek istediğinizde aracı güncellemeniz gerekmektedir. Her aracın en fazla 5 resmi bulunabilir. Daha sonra bu resmi değiştirmek istediğinizde güncelle sayfasındayken resmin üzerine tıklamanız yeterlidir. Bu işlemden sonra resmin detay sayfasına yönlendirileceksiniz.
 
 <center><img src="https://raw.githubusercontent.com/ismailkaygisiz/ReCapProject/master/Images/Image%20Update%20and%20Delete.png"></center>
 
