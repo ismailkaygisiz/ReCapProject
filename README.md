@@ -246,4 +246,4 @@ Buradan kullanıcıyı doğrudan silebilirsiniz. Bu işlemi yaptıktan sonra tek
 
 Güncellemek istediğinizde ise değerleri değiştirip Güncelle butonuna basmanız gerekmektedir.
 
-Findeks Puanı kullanıcı tarafından değiştirilemez. Her kullanıcı kayıt olduğunda sistem tarafından 200 ile 350 arasında olacak şekilde rastgele bir findeks puanı verilir. Her araç kiraladığında bu puan aracın fiyatına göre belirli bir oranda artar minimum değeri 0 maksimum değeri 1900'dür.
+Findeks Puanı kullanıcı tarafından değiştirilemez. Her kullanıcı kayıt olduğunda sistem tarafından 200 ile 350 arasında olacak şekilde rastgele bir findeks puanı verilir. Kullanıcı her araç kiraladığında bu puan aracın fiyatına göre belirli bir oranda artar minimum değeri 0 maksimum değeri 1900'dür.
