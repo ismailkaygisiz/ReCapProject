@@ -21,8 +21,10 @@ normal kullanıcı -->{
 
 Kullanıcı Hesaplarıyla Giriş Yaptıktan Sonra Müşteri Bilgilerini Profilden Görüntüleyebilir ve Düzenleyebilirsiniz.
 
-Sistemde Ekli 2 Araç Bulunmaktadır Birinin Findeks Puanı Yüksekken Diğerinin Düşüktür Bu Sayede Test Edebilirsiniz. Araçların 5 Adet Resmi Bulunmaktadır. Resimleri Güncellemek veya Silmek İçin Güncelleme Sayfasındayken Resmin Üzerine Tıklayarak Resmin Detay Sayfasından Silebilirsiniz.
-Yeni Araç Eklendiğinde Resim Gelmez. Aracı Güncelle Dediğinizde ve Resim Seçmediğinizde Default Resim Tanımlanır. Bunun Sebebi Aracı Eklemeden Id Özelliğinin Tanımlanmaması.
+Sistemde Ekli 2 Araç Bulunmaktadır Birinin Findeks Puanı Yüksekken Diğerinin Düşüktür Bu Sayede Test Edebilirsiniz. Araçların 5 Adet Resmi Bulunmaktadır.
+Resimleri Güncellemek veya Silmek İçin Güncelleme Sayfasındayken Resmin Üzerine Tıklayarak Resmin Detay Sayfasından Silebilirsiniz.
+Yeni Araç Eklendiğinde Resim Gelmez. Aracı Güncelle Dediğinizde ve Resim Seçmediğinizde Default Resim Tanımlanır.
+Bunun Sebebi Aracı Eklemeden Id Özelliğinin Tanımlanmaması.
 
 Ekleme Güncelleme ve Silme İşlemlerinde Kullanıcı Yetkisi Yoksa Hata Verir ve Yönlendirme Yapar.
 Varsa İşlemi Gerçekleştirir.
