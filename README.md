@@ -18,17 +18,17 @@
   - .Net Core 3.1
   - .Net Standart 2.0
 
-    Sürümlerle ilgili ayrıntıyı bilgiye projelerin içinde bulunan .csproj dosyalarından erişebilirsiniz
+    Sürümlerle ilgili ayrıntıyı bilgiye projelerin içinde bulunan .csproj dosyalarından erişebilirsiniz.
 
 - ### Uygulamalar
 
   - Backend
 
-    .Net Core 3.1 ve .Net Core 2.0 derleyebilecek herhangi bir geliştirme ortamı yeterli olacaktır
+    .Net Core 3.1 ve .Net Core 2.0 derleyebilecek herhangi bir geliştirme ortamı.
 
   - FrontEnd
 
-    Angular CLI 11.2.3 derleyebilecek herhangi bir geliştirme ortamı
+    Angular CLI 11.2.3 derleyebilecek herhangi bir geliştirme ortamı.
 
 ---
 
