@@ -76,7 +76,7 @@
 
 - ### Angular Projesini Çalıştırma
 
-  Kurulum işlemi bittikten sonra yapmanız gereken terminale `ng serve --open --port 4200` komutunu yazmak olacaktır. Eğer bu port meşgulse veya çalışmıyorsa port adresini değiştirebilirsiniz. Port adresini değiştirdiğinizde WebAPI/Startup.cs içindeki
+  Kurulum işlemi bittikten sonra yapmanız gereken terminale `ng serve --open --port 4200` komutunu yazmak olacaktır. Eğer bu port meşgulse veya çalışmıyorsa port adresini değiştirebilirsiniz. Port adresini değiştirdiğinizde `WebAPI/Startup.cs` içindeki
 
   `app.UseCors(builder => builder.WithOrigins("http://localhost:4200")AllowAnyHeader());`
 
