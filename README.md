@@ -130,7 +130,7 @@ Bu işlemleri yapmadan önce admin yetkisiyle sisteme giriş yapılmalıdır bun
 - Kiralamalar
 - Müşteriler
 
-Markalar veya Renkler butonlarından herhangi birine basarak listelendikleri sayfaya ulaşabilirsiniz. Açılan bu sayfa üzerinden seçtiğiniz herhangi bir markanın veya rengin detay sayfasına yönlendirilirsiniz. Sonrasında ise eğer yetkiniz varsa rengi veya markayı güncelleyebilir ya da silebilirsiniz. Aynı isimde birden fazla renk ya da marka varsa veya yetkiniz yoksa sistem hata sizi verip ana sayfaya yönlendirecektir.
+Markalar veya Renkler butonlarından herhangi birine basarak listelendikleri sayfaya ulaşabilirsiniz. Açılan bu sayfa üzerinden seçtiğiniz herhangi bir markanın veya rengin detay sayfasına yönlendirilirsiniz. Sonrasında ise eğer yetkiniz varsa rengi veya markayı güncelleyebilir ya da silebilirsiniz. Aynı isimde birden fazla renk ya da marka varsa veya yetkiniz yoksa sistem hata verip sizi ana sayfaya yönlendirecektir.
 
 <center><img src="https://raw.githubusercontent.com/ismailkaygisiz/ReCapProject/master/Images/Brand%20Update.png"></center>
 
