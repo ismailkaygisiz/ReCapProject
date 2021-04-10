@@ -6,13 +6,12 @@ import { SingleResponseModel } from '../models/singleResponseModel';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
 import { LocalStorageService } from './local-storage.service';
+import { apiUrl } from 'src/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  apiUrl = 'https://localhost:5001/api/';
-
   constructor(
     private localStorageService: LocalStorageService,
     private httpClient: HttpClient
@@ -20,7 +19,7 @@ export class UserService {
 
   getUserByMailUseLocalStorage(): Observable<SingleResponseModel<User>> {
     let newPath =
-      this.apiUrl +
+      apiUrl +
       'users/getbymail?email=' +
       this.localStorageService.getItem('email');
 
@@ -28,13 +27,13 @@ export class UserService {
   }
 
   update(user: User): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'users/update';
+    let newPath = apiUrl + 'users/update';
 
     return this.httpClient.post<ResponseModel>(newPath, user);
   }
 
   delete(user: User): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'users/delete';
+    let newPath = apiUrl + 'users/delete';
 
     return this.httpClient.post<ResponseModel>(newPath, user);
   }

@@ -10,6 +10,7 @@ import { BrandService } from 'src/app/services/brand.service';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
 import { ColorService } from 'src/app/services/color.service';
+import { imageUrl } from 'src/api';
 
 @Component({
   selector: 'app-car-update',
@@ -17,6 +18,8 @@ import { ColorService } from 'src/app/services/color.service';
   styleUrls: ['./car-update.component.css'],
 })
 export class CarUpdateComponent implements OnInit {
+  url = imageUrl;
+
   file: File = null;
   carUpdateForm: FormGroup;
   brands: Brand[];

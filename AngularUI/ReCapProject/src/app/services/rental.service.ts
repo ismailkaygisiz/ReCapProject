@@ -7,12 +7,12 @@ import { RentalAdd } from '../models/rentalAdd';
 import { ResponseModel } from '../models/responseModel';
 import { CustomerService } from './customer.service';
 import { UserService } from './user.service';
+import { apiUrl } from 'src/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RentalService {
-  apiUrl = 'https://localhost:5001/api/';
 
   constructor(
     private httpClient: HttpClient,
@@ -21,12 +21,12 @@ export class RentalService {
   ) {}
 
   getRentals(): Observable<ListResponseModel<Rental>> {
-    let newPath = this.apiUrl + 'rentals/getall';
+    let newPath = apiUrl + 'rentals/getall';
     return this.httpClient.get<ListResponseModel<Rental>>(newPath);
   }
 
   getRentalsByCar(carId: number): Observable<ListResponseModel<Rental>> {
-    let newPath = this.apiUrl + 'rentals/getbycarid?carid=' + carId;
+    let newPath = apiUrl + 'rentals/getbycarid?carid=' + carId;
     return this.httpClient.get<ListResponseModel<Rental>>(newPath);
   }
 
@@ -35,7 +35,7 @@ export class RentalService {
     customerFindeksPoint: number,
     carFindeksPoint: number
   ): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'rentals/add';
+    let newPath = apiUrl + 'rentals/add';
 
     let customer = {
       id: rental.customerId,

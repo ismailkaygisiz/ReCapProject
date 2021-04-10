@@ -11,15 +11,12 @@
     <div *ngIf="car.imagePath" class="carousel-inner">
       <div class="carousel-item active">
         <img
-          src="https://localhost:5001/{{ car.imagePath.imagePath }}"
+          src="{{ url }}{{ car.imagePath.imagePath }}"
           class="d-block w-100"
         />
       </div>
       <div *ngFor="let carImage of carImages" class="carousel-item">
-        <img
-          src="https://localhost:5001/{{ carImage.imagePath }}"
-          class="d-block w-100"
-        />
+        <img src="{{ url }}{{ carImage.imagePath }}" class="d-block w-100" />
       </div>
     </div>
     <button

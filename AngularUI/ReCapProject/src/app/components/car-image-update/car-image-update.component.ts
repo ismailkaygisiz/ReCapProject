@@ -6,6 +6,7 @@ import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
+import { imageUrl } from 'src/api';
 
 @Component({
   selector: 'app-car-image-update',
@@ -13,6 +14,8 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./car-image-update.component.css'],
 })
 export class CarImageUpdateComponent implements OnInit {
+  url = imageUrl;
+
   file: File;
   carImageUpdateForm: FormGroup;
   car: Car;

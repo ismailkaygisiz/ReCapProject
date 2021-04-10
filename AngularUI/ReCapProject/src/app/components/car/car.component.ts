@@ -6,6 +6,7 @@ import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
 import { ColorService } from 'src/app/services/color.service';
+import { imageUrl } from 'src/api';
 
 @Component({
   selector: 'app-car',
@@ -13,6 +14,8 @@ import { ColorService } from 'src/app/services/color.service';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
+  url = imageUrl;
+
   cars: Car[] = [];
   brands: Brand[] = [];
   colors: Color[] = [];

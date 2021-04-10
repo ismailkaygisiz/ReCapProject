@@ -74,7 +74,7 @@
   <div *ngIf="dataLoaded" class="card" style="width: 20rem">
     <div *ngIf="car.imagePath">
       <img
-        src="https://localhost:5001/{{ car.imagePath.imagePath }}"
+        src="{{ url }}{{ car.imagePath.imagePath }}"
         class="card-img-top"
         alt="{{ car.brandName }}"
       />

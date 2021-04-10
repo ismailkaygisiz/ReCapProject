@@ -4,17 +4,16 @@ import { Observable } from 'rxjs';
 import { CarImage } from '../models/carImage';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
+import { apiUrl } from 'src/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CarImageService {
-  apiUrl = 'https://localhost:5001/api/';
-
   constructor(private httpClient: HttpClient) {}
 
   add(carImage: CarImage, file: File): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'carImages/add';
+    let newPath = apiUrl + 'carImages/add';
 
     const formData: FormData = new FormData();
     formData.append('carId', carImage.carId.toString());
@@ -27,7 +26,7 @@ export class CarImageService {
   }
 
   update(carImage: CarImage, file: File): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'carImages/update';
+    let newPath = apiUrl + 'carImages/update';
 
     const formData: FormData = new FormData();
     formData.append('id', carImage.id.toString());
@@ -41,7 +40,7 @@ export class CarImageService {
   }
 
   delete(carImage: CarImage): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'carImages/delete';
+    let newPath = apiUrl + 'carImages/delete';
 
     const formData: FormData = new FormData();
     formData.append('id', carImage.id.toString());
@@ -50,7 +49,7 @@ export class CarImageService {
   }
 
   getById(carImageId: number): Observable<SingleResponseModel<CarImage>> {
-    let newPath = this.apiUrl + 'carImages/getbyid?id=' + carImageId;
+    let newPath = apiUrl + 'carImages/getbyid?id=' + carImageId;
 
     return this.httpClient.get<SingleResponseModel<CarImage>>(newPath);
   }

@@ -12,7 +12,7 @@
               routerLink="/update/car/{{ car.id }}/images/{{
                 car.imagePath.id
               }}"
-              src="https://localhost:5001/{{ car.imagePath.imagePath }}"
+              src="{{ url }}{{ car.imagePath.imagePath }}"
               class="d-block w-100"
               alt="{{ car.brandName }}"
             />
@@ -20,7 +20,7 @@
           <div *ngFor="let carImage of carImages" class="carousel-item">
             <img
               routerLink="/update/car/{{ car.id }}/images/{{ carImage.id }}"
-              src="https://localhost:5001/{{ carImage.imagePath }}"
+              src="{{ url }}{{ carImage.imagePath }}"
               class="d-block w-100"
               alt="{{ carImage.imagePath }}"
             />

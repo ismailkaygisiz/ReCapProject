@@ -1,7 +1,7 @@
 <div *ngIf="dataLoaded" class="content">
   <div class="col-md-12">
     <div class="card" style="width: 30rem">
-      <img src="https://localhost:5001/{{ carImage.imagePath }}" />
+      <img src="{{ url }}{{ carImage.imagePath }}" />
       <div class="card-header"><h5 class="title">Resim Güncelle/Sil</h5></div>
       <div class="card-body">
         <form>

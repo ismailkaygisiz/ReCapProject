@@ -6,22 +6,23 @@ import { Payment } from '../models/payment';
 import { RentalAdd } from '../models/rentalAdd';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
+import { apiUrl } from 'src/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PaymentService {
-  apiUrl = 'https://localhost:5001/api/';
   rental: RentalAdd;
+
   constructor(private httpClient: HttpClient) {}
 
   pay(payment: Payment): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'payment/pay';
+    let newPath = apiUrl + 'payment/pay';
     return this.httpClient.post<ResponseModel>(newPath, payment);
   }
 
   add(payment: Payment): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'payment/add';
+    let newPath = apiUrl + 'payment/add';
 
     return this.httpClient.post<ResponseModel>(newPath, payment);
   }
@@ -30,12 +31,12 @@ export class PaymentService {
     customerId: number
   ): Observable<ListResponseModel<Payment>> {
     let newPath =
-      this.apiUrl + 'payment/getpaymentsbycustomerid?customerid=' + customerId;
+      apiUrl + 'payment/getpaymentsbycustomerid?customerid=' + customerId;
     return this.httpClient.get<ListResponseModel<Payment>>(newPath);
   }
 
   getPaymentById(id: number): Observable<SingleResponseModel<Payment>> {
-    let newPath = this.apiUrl + 'payment/getpaymentbyid?id=' + id;
+    let newPath = apiUrl + 'payment/getpaymentbyid?id=' + id;
     return this.httpClient.get<SingleResponseModel<Payment>>(newPath);
   }
 

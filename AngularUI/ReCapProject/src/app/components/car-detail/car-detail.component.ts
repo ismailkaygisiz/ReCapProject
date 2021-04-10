@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
 import { CarService } from 'src/app/services/car.service';
+import { imageUrl } from 'src/api';
 
 @Component({
   selector: 'app-cardetail',
@@ -11,6 +12,8 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./car-detail.component.css'],
 })
 export class CarDetailComponent implements OnInit {
+  url = imageUrl;
+
   car: Car;
   carImages: CarImage[] = [];
   dataLoaded: boolean = false;
@@ -54,11 +57,12 @@ export class CarDetailComponent implements OnInit {
               responseError.error.Errors[i].ErrorMessage
             );
           }
-        } else {this.toastrService.error(
-          'Bir Şeyler Ters Gitti İşlem Başarısız Yönlendiriliyorsunuz',
-          'Hata'
-        );
-        this.router.navigate(['']);
+        } else {
+          this.toastrService.error(
+            'Bir Şeyler Ters Gitti İşlem Başarısız Yönlendiriliyorsunuz',
+            'Hata'
+          );
+          this.router.navigate(['']);
         }
       }
     );
