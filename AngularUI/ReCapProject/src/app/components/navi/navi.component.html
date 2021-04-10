@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">ReCap Project</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/"
+            >Ana Sayfa</a
+          >
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Listele
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/brands/list">Markalar</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/colors/list">Renkler</a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" routerLink="/rentals/list">Kiralamalar</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/customers/list">Müşteriler</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Ekle
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/add/brand-add"
+                >Marka Ekle</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/add/color-add">Renk Ekle</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/add/car-add">Araba Ekle</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="nav navbar-nav navbar-right">
+        <app-logout></app-logout>
+      </div>
+    </div>
+  </div>
+</nav>

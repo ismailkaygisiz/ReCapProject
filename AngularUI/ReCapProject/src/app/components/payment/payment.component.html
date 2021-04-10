@@ -1,0 +1,148 @@
+<a class="btn" data-bs-toggle="modal" data-bs-target="#cardModal"
+  >Kayıtlı Kartlarımı Göster</a
+>
+<div
+  class="modal fade"
+  id="cardModal"
+  tabindex="-1"
+  aria-labelledby="cardModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cardModalLabel">Kayıtlı Kartlar</h5>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <strong>Kayıtlı kartlar</strong>
+          </li>
+          <li
+            *ngFor="let card of payments"
+            class="list-group-item mouse"
+            (click)="setCurrentCard(card)"
+            data-bs-dismiss="modal"
+          >
+            Kart No : {{ card.cardNumber }}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+          Kapat
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="paymentForm">
+          <div class="mb-3">
+            <label for="firstName">Kartın Üzerindeki İsim</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="form-control"
+                placeholder="Kartın Üzerindeki İsim"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="lastName">Kartın Üzerindeki Soyisim</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="lastName"
+                formControlName="lastName"
+                class="form-control"
+                placeholder="Kartın Üzerindeki Soyisim"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="cardNumber">Kart Numarası</label>
+            <div class="form-group">
+              <input
+                type="text"
+                maxlength="16"
+                id="cardNumber"
+                formControlName="cardNumber"
+                class="form-control"
+                placeholder="Kart Numarası"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="year">Yıl</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="year"
+                formControlName="year"
+                class="form-control"
+                placeholder="Yıl"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="month">Ay</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="month"
+                formControlName="month"
+                class="form-control"
+                placeholder="Ay"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="cvv">CVV</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="cvv"
+                formControlName="cvv"
+                class="form-control"
+                placeholder="CVV"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [(ngModel)]="saveCard"
+              id="saveCard"
+            />
+            <label class="form-check-label" for="saveCard">
+              Kart bilgilerimi kaydet
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button (click)="pay()" class="btn btn-fill btn-success">
+          Ödeme Yap
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div *ngIf="dataLoaded" class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Aracı Kirala</h5></div>
+      <div class="card-body">
+        <form [formGroup]="rentalAddForm">
+          <div class="mb-3">
+            <label for="rentDate">Alınacak Tarih</label>
+            <div class="form-group">
+              <input
+                type="date"
+                min="{{ minRentDate | date: 'yyyy-MM-dd' }}"
+                id="rentDate"
+                formControlName="rentDate"
+                class="form-control"
+                placeholder="Alınacak Tarih"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="returnDate">Geri Getirileceği Tarih</label>
+            <div class="form-group">
+              <input
+                min="{{ minReturnDate | date: 'yyyy-MM-dd' }}"
+                type="date"
+                id="returnDate"
+                formControlName="returnDate"
+                class="form-control"
+                placeholder="Dönüş Tarihi"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button (click)="add()" class="btn btn-fill btn-primary">Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>

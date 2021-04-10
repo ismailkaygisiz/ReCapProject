@@ -1,0 +1,91 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Araç Ekle</h5></div>
+      <div class="card-body">
+        <form [formGroup]="carAddForm">
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="brandId">Marka</label>
+              <select class="form-select" formControlName="brandId">
+                <option selected="selected"></option>
+
+                <option *ngFor="let brand of brands" [value]="brand.id">
+                  {{ brand.brandName }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="colorId">Renk</label>
+              <select class="form-select" formControlName="colorId">
+                <option selected="selected"></option>
+
+                <option *ngFor="let color of colors" [value]="color.id">
+                  {{ color.colorName }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="dailyPrice">Günlük Ücret</label>
+              <input
+                type="number"
+                id="dailyPrice"
+                formControlName="dailyPrice"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="modelYear">Model Yılı</label>
+              <input
+                type="number"
+                id="modelYear"
+                formControlName="modelYear"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="description">Açıklama</label>
+              <textarea
+                id="description"
+                formControlName="description"
+                class="form-control"
+              ></textarea>
+            </div>
+          </div>
+
+          <!--BURASI GÜNCELLENECEK
+            
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="formFile">Dosya Seç</label>
+              <input
+                type="file"
+                id="formFile"
+                class="form-control"
+                (change)="handleFileInput($event)"
+                accept="image/*"
+              />
+            </div>
+          </div>
+
+          BURASI GÜNCELLENECEK-->
+        </form>
+      </div>
+      <div class="card-footer">
+        <button (click)="add()" class="btn btn-fill btn-primary">Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>

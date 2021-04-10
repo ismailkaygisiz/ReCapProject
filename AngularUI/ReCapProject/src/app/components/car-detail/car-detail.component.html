@@ -1,0 +1,105 @@
+<div *ngIf="!dataLoaded" class="spinner-border text-danger" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<div *ngIf="dataLoaded" class="card" style="width: 30rem">
+  <div
+    id="carouselExampleControls"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div *ngIf="car.imagePath" class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="https://localhost:5001/{{ car.imagePath.imagePath }}"
+          class="d-block w-100"
+        />
+      </div>
+      <div *ngFor="let carImage of carImages" class="carousel-item">
+        <img
+          src="https://localhost:5001/{{ carImage.imagePath }}"
+          class="d-block w-100"
+        />
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleControls"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleControls"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Açıklaması : {{ car.description }}</h5>
+    <h5 class="card-title">Markası : {{ car.brandName }}</h5>
+    <h5 class="card-title">Rengi : {{ car.colorName }}</h5>
+    <h5 class="card-title">Günlük Ücreti : {{ car.dailyPrice }}</h5>
+    <h5 class="card-title">Modeli : {{ car.modelYear }}</h5>
+    <h5 class="card-title">Findeks Puanı : {{ car.findeksPoint }}</h5>
+    <p class="card-text"></p>
+    <a routerLink="/car-rental/{{ car.id }}" class="btn btn-success">Kirala</a>
+    <a routerLink="/update/car/{{ car.id }}" class="btn btn-warning">
+      Güncelle
+    </a>
+    <a
+      data-bs-toggle="modal"
+      data-bs-target="#dangerModel"
+      class="btn btn-danger"
+    >
+      Sil
+    </a>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="dangerModel"
+    tabindex="-1"
+    aria-labelledby="dangerModel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dangerModelLabel">
+            Silmek İstediğinizden Emin Misiniz ?
+          </h5>
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
+        <div class="modal-body">
+          Bu İşlemi Yaptıktan Sonra Araç ve Araçla İlgili Nesneler Kalıcı Olarak
+          Silinecek ve İşlem Geri Alınamayacaktır Emin Misiniz ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+            Kapat
+          </button>
+          <button
+            (click)="delete()"
+            type="button"
+            class="btn btn-danger"
+            data-bs-dismiss="modal"
+          >
+            Sil
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

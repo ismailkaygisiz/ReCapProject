@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Açıklama</th>
+      <th scope="col">Marka</th>
+      <th scope="col">Renk</th>
+      <th scope="col">Müşteri Adı</th>
+      <th scope="col">Kiralanma Tarihi</th>
+      <th scope="col">Geri Getirildiği Tarih</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rental of rentals">
+      <td>{{ rental.id }}</td>
+      <td>{{ rental.carName }}</td>
+      <td>{{ rental.brandName }}</td>
+      <td>{{ rental.colorName }}</td>
+      <td>{{ rental.customerFullName }}</td>
+      <td>{{ rental.rentDate | date: "dd/MM/yyyy" }}</td>
+      <td>{{ rental.returnDate | date: "dd/MM/yyyy" }}</td>
+    </tr>
+  </tbody>
+</table>

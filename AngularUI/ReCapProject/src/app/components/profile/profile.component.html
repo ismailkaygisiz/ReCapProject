@@ -1,0 +1,113 @@
+<div *ngIf="dataLoaded" class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="profileForm">
+          <div class="mb-3">
+            <label for="firstName">İsim</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="form-control"
+                placeholder="İsim"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="lastName">Soyisim</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="lastName"
+                formControlName="lastName"
+                class="form-control"
+                placeholder="Soyisim"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="lastName">Şirket Adı</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="lastName"
+                formControlName="companyName"
+                class="form-control"
+                placeholder="Şirket Adı"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="lastName">Findeks Puanı</label>
+            <div class="form-group">
+              <h5 class="form-control">{{ customer.findeksPoint }}</h5>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="card-footer">
+        <button (click)="update()" class="btn btn-fill btn-success">
+          Bilgileri Güncelle
+        </button>
+        <button
+          data-bs-toggle="modal"
+          data-bs-target="#dangerModel"
+          class="btn btn-danger"
+        >
+          Sil
+      </button>
+      </div>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="dangerModel"
+        tabindex="-1"
+        aria-labelledby="dangerModel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="dangerModelLabel">
+                Silmek İstediğinizden Emin Misiniz ?
+              </h5>
+              <button
+                type="button"
+                class="btn btn-dark"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div class="modal-body">
+              Bu İşlemi Yaptıktan Sonra Kullanıcı ve Kullanıcıyla İlgili Nesneler Kalıcı
+              Olarak Silinecek ve İşlem Geri Alınamayacaktır Emin Misiniz ?
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-dark"
+                data-bs-dismiss="modal"
+              >
+                Kapat
+              </button>
+              <button
+                (click)="delete()"
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                Sil
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

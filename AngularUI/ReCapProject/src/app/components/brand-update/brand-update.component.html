@@ -1,0 +1,76 @@
+<div *ngIf="dataLoaded" class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Marka Güncelle / Sil</h5></div>
+      <div class="card-body">
+        <form [formGroup]="brandUpdateForm">
+          <div class="mb-3">
+            <label for="brandName">Marka İsmi</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="brandName"
+                formControlName="brandName"
+                class="form-control"
+                placeholder="Marka İsmi"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button (click)="update()" class="btn btn-fill btn-warning">
+          Güncelle
+        </button>
+        <button
+          data-bs-toggle="modal"
+          data-bs-target="#dangerModel"
+          class="btn btn-fill btn-danger"
+        >
+          Sil
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="dangerModel"
+    tabindex="-1"
+    aria-labelledby="dangerModel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dangerModelLabel">
+            Silmek İstediğinizden Emin Misiniz ?
+          </h5>
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
+        <div class="modal-body">
+          Bu İşlemi Yaptıktan Sonra Marka ve Markayla İlgili Nesneler Kalıcı
+          Olarak Silinecek ve İşlem Geri Alınamayacaktır Emin Misiniz?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+            Kapat
+          </button>
+          <button
+            (click)="delete()"
+            type="button"
+            class="btn btn-danger"
+            data-bs-dismiss="modal"
+          >
+            Sil
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+<div *ngIf="dataLoaded" class="content">
+  <div class="card" style="width: 30rem">
+    <div
+      id="carouselExampleControls"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div *ngIf="car.imagePath" class="col-md-12">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              routerLink="/update/car/{{ car.id }}/images/{{
+                car.imagePath.id
+              }}"
+              src="https://localhost:5001/{{ car.imagePath.imagePath }}"
+              class="d-block w-100"
+              alt="{{ car.brandName }}"
+            />
+          </div>
+          <div *ngFor="let carImage of carImages" class="carousel-item">
+            <img
+              routerLink="/update/car/{{ car.id }}/images/{{ carImage.id }}"
+              src="https://localhost:5001/{{ carImage.imagePath }}"
+              class="d-block w-100"
+              alt="{{ carImage.imagePath }}"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Araç Ekle</h5></div>
+      <div class="card-body">
+        <form [formGroup]="carUpdateForm">
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="brandId">Marka</label>
+              <select class="form-select" formControlName="brandId">
+                <option selected="selected"></option>
+
+                <option *ngFor="let brand of brands" [value]="brand.id">
+                  {{ brand.brandName }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="colorId">Renk</label>
+              <select class="form-select" formControlName="colorId">
+                <option selected="selected"></option>
+
+                <option *ngFor="let color of colors" [value]="color.id">
+                  {{ color.colorName }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="dailyPrice">Günlük Ücret</label>
+              <input
+                type="number"
+                id="dailyPrice"
+                formControlName="dailyPrice"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="modelYear">Model Yılı</label>
+              <input
+                type="number"
+                id="modelYear"
+                formControlName="modelYear"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="description">Açıklama</label>
+              <textarea
+                id="description"
+                formControlName="description"
+                class="form-control"
+              ></textarea>
+            </div>
+          </div>
+
+          <!--BURASI GÜNCELLENECEK-->
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="formFile">Resim Ekle</label>
+              <input
+                type="file"
+                id="formFile"
+                class="form-control"
+                (change)="handleFileInput($event)"
+                accept="image/*"
+              />
+            </div>
+          </div>
+          <!--BURASI GÜNCELLENECEK-->
+        </form>
+      </div>
+      <div class="card-footer">
+        <button (click)="update()" class="btn btn-fill btn-warning">
+          Güncelle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

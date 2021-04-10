@@ -1,0 +1,10 @@
+<ul *ngIf="dataLoaded" class="list-group">
+  <li routerLink="cars/list" class="list-group-item">Tüm Renkler</li>
+  <li
+    routerLink="cars/color/{{ color.id }}"
+    *ngFor="let color of colors"
+    class="list-group-item"
+  >
+    {{ color.colorName }}
+  </li>
+</ul>

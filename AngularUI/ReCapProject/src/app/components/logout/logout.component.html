@@ -1,0 +1,39 @@
+<li *ngIf="isAuthenticated() && dataLoaded" class="nav-item dropdown">
+  <a
+    class="nav-link dropdown-toggle"
+    id="navbarDropdown"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    {{ user.firstName }} {{ user.lastName }}
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <li>
+      <a class="dropdown-item" routerLink="/user/{{ user.id }}">Profil</a>
+    </li>
+    <li>
+      <a class="dropdown-item" (click)="logout()">Çıkış Yap</a>
+    </li>
+  </ul>
+</li>
+
+<li *ngIf="!isAuthenticated()" class="nav-item dropdown">
+  <a
+    class="nav-link dropdown-toggle"
+    id="navbarDropdown"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Merhaba Kullanıcı
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <li>
+      <a class="dropdown-item" routerLink="/auth/login">Giriş Yap</a>
+    </li>
+    <li>
+      <a class="dropdown-item" routerLink="/auth/register">Kayıt Ol</a>
+    </li>
+  </ul>
+</li>

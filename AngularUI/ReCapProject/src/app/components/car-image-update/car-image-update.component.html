@@ -1,0 +1,77 @@
+<div *ngIf="dataLoaded" class="content">
+  <div class="col-md-12">
+    <div class="card" style="width: 30rem">
+      <img src="https://localhost:5001/{{ carImage.imagePath }}" />
+      <div class="card-header"><h5 class="title">Resim Güncelle/Sil</h5></div>
+      <div class="card-body">
+        <form>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="formFile">Resim</label>
+              <input
+                type="file"
+                id="formFile"
+                class="form-control"
+                (change)="handleFileInput($event)"
+                accept="image/*"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button (click)="update()" class="btn btn-fill btn-warning">
+          Güncelle
+        </button>
+
+        <button
+          data-bs-toggle="modal"
+          data-bs-target="#dangerModel"
+          class="btn btn-danger"
+        >
+          Sil
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="dangerModel"
+    tabindex="-1"
+    aria-labelledby="dangerModel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="dangerModelLabel">
+            Silmek İstediğinizden Emin Misiniz ?
+          </h5>
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
+        <div class="modal-body">
+          Bu İşlemi Yaptıktan Sonra Aracınızın Resmi Kalıcı Olarak Silinecektir
+          ve İşlem Geri Alınamayacaktır Emin Misiniz ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+            Kapat
+          </button>
+          <button
+            (click)="delete()"
+            type="button"
+            class="btn btn-danger"
+            data-bs-dismiss="modal"
+          >
+            Sil
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

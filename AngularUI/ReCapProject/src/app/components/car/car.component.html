@@ -1,0 +1,97 @@
+<div *ngIf="!dataLoaded" class="spinner-border text-danger" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<br />
+
+<!--Filters-->
+<div class="row">
+  <!--Search-->
+  <div class="col-md-9">
+    <div class="mb-3">
+      <input
+        type="text"
+        [(ngModel)]="filterText"
+        class="form-control"
+        id="filterText"
+        placeholder="Arama İfadesi Giriniz"
+      />
+    </div>
+  </div>
+  <!--Search-->
+
+  <div class="col-md-3">
+    <div class="mb-3">
+      <div class="btn-group btn-group-md">
+        <!-- Selects -->
+        <select [(ngModel)]="brandId" class="form-select">
+          <option *ngFor="let brand of brands" [value]="brand.id">
+            {{ brand.brandName }}
+          </option>
+        </select>
+
+        <select [(ngModel)]="colorId" class="form-select">
+          <option *ngFor="let color of colors" [value]="color.id">
+            {{ color.colorName }}
+          </option>
+        </select>
+        <!-- Selects -->
+
+        <!-- Buttons -->
+        <button
+          *ngIf="brandId && colorId"
+          routerLink="/cars/{{ brandId }}/{{ colorId }}"
+          class="btn btn-success"
+        >
+          Filtrele
+        </button>
+        <button
+          *ngIf="brandId && !colorId"
+          routerLink="/cars/brand/{{ brandId }}"
+          class="btn btn-success"
+        >
+          Filtrele
+        </button>
+        <button
+          *ngIf="!brandId && colorId"
+          routerLink="/cars/color/{{ colorId }}"
+          class="btn btn-success"
+        >
+          Filtrele
+        </button>
+        <!-- Buttons -->
+      </div>
+    </div>
+  </div>
+</div>
+<!--Filters-->
+
+<br />
+
+<!--Cars-->
+
+<div *ngFor="let car of cars | filter: filterText" style="float: left">
+  <div *ngIf="dataLoaded" class="card" style="width: 20rem">
+    <div *ngIf="car.imagePath">
+      <img
+        src="https://localhost:5001/{{ car.imagePath.imagePath }}"
+        class="card-img-top"
+        alt="{{ car.brandName }}"
+      />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Id : {{ car.id }}</h5>
+      <h5 class="card-title">Markası : {{ car.brandName }}</h5>
+      <h5 class="card-title">Rengi : {{ car.colorName }}</h5>
+      <h5 class="card-title">Günlük Ücreti : {{ car.dailyPrice }}₺</h5>
+      <h5 class="card-title">Modeli : {{ car.modelYear }}</h5>
+      <h5 class="card-title">Açıklaması : {{ car.description }}</h5>
+      <h5 class="card-title">Findeks Puanı : {{ car.findeksPoint }}</h5>
+
+      <br /><br />
+
+      <a routerLink="/cars/{{ car.id }}" class="btn btn-dark">Detayları Gör</a>
+    </div>
+  </div>
+</div>
+<!--Cars-->

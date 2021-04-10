@@ -1,0 +1,14 @@
+<div *ngIf="dataLoaded">
+  <ul class="list-group">
+    <li routerLink="cars/list" class="list-group-item">Tüm Markalar</li>
+    <li
+      routerLink="/cars/brand/{{ brand.id }}"
+      *ngFor="let brand of brands"
+      class="list-group-item"
+    >
+      {{ brand.brandName }}
+    </li>
+  </ul>
+  <br />
+  <app-color></app-color>
+</div>
