@@ -14,9 +14,11 @@
 
 - ### Sürümler
 
-  - Angular CLI 11.2.3. <br>
-  - .Net Core 3.1 <br>
-  - .Net Standart 2.0 <br>
+  - Angular CLI 11.2.3.
+  - .Net Core 3.1
+  - .Net Standart 2.0
+
+    Sürümlerle ilgili ayrıntıyı bilgiye projelerin içinde bulunan .csproj dosyalarından erişebilirsiniz
 
 - ### Uygulamalar
 
