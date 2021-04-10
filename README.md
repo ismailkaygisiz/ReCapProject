@@ -121,7 +121,7 @@ Arama çubuğu marka, renk, günlük ücret ve model yılı için olan aramalar�
 
 <br>
 
-Bu işlemleri yapmadan önce admin yetkisiyle sisteme giriş yapılmalıdır bunun için DbScriptAnfInfos klasörü içinde bulunan Bilgilendirme.txt dosyasından faydalanabilirsiniz. Eğer herhangi bir hesapla giriş yapmazsanız sizi otomatik giriş yap ekranına yönlendirecektir.
+Bu işlemleri yapmadan önce admin yetkisiyle sisteme giriş yapılmalıdır bunun için DbScriptAnfInfos klasörü içinde bulunan `Informations.txt` dosyasından faydalanabilirsiniz. Eğer herhangi bir hesapla giriş yapmazsanız sizi otomatik giriş yap ekranına yönlendirecektir.
 
 Üst tarafta yer alan Listele butonuna tıkladığınızda önünüze 4 seçenek çıkacaktır.
 
