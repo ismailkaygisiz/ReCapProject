@@ -193,7 +193,7 @@ Aracın detay sayfasındayken Güncelle butonuna bastığınızda güncelleme ek
 <center><img src="https://raw.githubusercontent.com/ismailkaygisiz/ReCapProject/master/Images/Car%20Update.png"></center>
 
 Sadece yetkiniz varken araçları güncelleyebilirsiniz.
-Eğer aracın mevcut resmi yoksa ve resim eklemeden Güncelle butonuna basarsanız araca Ön tanımlı olan resmi atayacaktır. Her resim eklemek istediğinizde aracı güncellemeniz gerekmektedir. Her aracın en fazla 5 resmi bulunabilir. Daha sonra bu resmi değiştirmek istediğinizde güncelle sayfasındayken resmin üzerine tıklamanız yeterlidir. Bu işlemden sonra resmin detay sayfasına yönlendirileceksiniz.
+Eğer aracın mevcut resmi yoksa ve resim eklemeden Güncelle butonuna basarsanız araca ön tanımlı olan resmi atayacaktır. Her resim eklemek istediğinizde aracı güncellemeniz gerekmektedir. Her aracın en fazla 5 resmi bulunabilir. Daha sonra bu resmi değiştirmek istediğinizde güncelle sayfasındayken resmin üzerine tıklamanız yeterlidir. Bu işlemden sonra resmin detay sayfasına yönlendirileceksiniz.
 
 <center><img src="https://raw.githubusercontent.com/ismailkaygisiz/ReCapProject/master/Images/Image%20Update%20and%20Delete.png"></center>
 
@@ -209,7 +209,7 @@ Eğer giriş yapmışsanız bu butona bastıktan sonra tarih seçme sayfasına y
 
 <center><img src="https://raw.githubusercontent.com/ismailkaygisiz/ReCapProject/master/Images/Car%20Rental.png"></center>
 
-Burada tarih seçerken dikkat etmeniz gereken kiralama tarihiyle geri dönüş tarihinin aynı olmamasıdır.
+Burada tarih seçerken dikkat etmeniz gereken geri dönüş tarihinin kiralama tarihinden sonrası olmasıdır ve geri kiralama tarihiyle geri dönüş tarihinin aynı olmamasıdır.
 Bu aşamayıda başarıyla geçtikten sonra ödeme sayfasına yönlendirileceksiniz.
 
 <center><img src="https://raw.githubusercontent.com/ismailkaygisiz/ReCapProject/master/Images/Payment%20Page.png"></center>
@@ -232,7 +232,7 @@ Eğer findeks puanınız yetersiz ise aracı kiralayamadan ana sayfaya yönlendi
 
 ## Kullanıcı Güncelleme ve Silme
 
-Eğer giriş yapmışsanız üst tarafta solda yer alan butonda sisteme kayıtlı olduğunuz ismi göreceksiniz.
+Eğer giriş yapmışsanız üst tarafta sağda yer alan butonda sisteme kayıtlı olduğunuz ismi göreceksiniz.
 
 Eğer giriş yapmadıysanız Merhaba Kullanıcı yazısını göreceksiniz.
 
@@ -244,6 +244,6 @@ Profil butonuna bastığınızda Profil sayfasına yönlendilirirsiniz.
 
 Buradan kullanıcıyı doğrudan silebilirsiniz. Bu işlemi yaptıktan sonra tekrar giriş yapmanız eğer mevcut hesabınız yoksa tekrar kayıt olmanız gerekmektedir.
 
-Güncellemek istediğinizde ise değerleri değiştirip GÜncelle butonuna basmanız gerkmektedir.
+Güncellemek istediğinizde ise değerleri değiştirip Güncelle butonuna basmanız gerkmektedir.
 
 Findeks Puanı kullanıcı tarafından değiştirilemez. Her kullanıcı kayıt olduğunda random bir findeks puanı verilir. Her araç kiraladığında bu puan aracın fiyatına göre belirli bir oranda artar minimum değeri 0 maksimum değeri 1900'dür.

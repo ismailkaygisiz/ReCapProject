@@ -127,7 +127,7 @@ namespace Business.Concrete
                 return new ErrorResult("Findeks Point Not Enough");
             }
 
-            _customer.FindeksPoint += carFindeksPoint*3;
+            _customer.FindeksPoint += carFindeksPoint+ (carFindeksPoint/2);
 
             Update(_customer);
             return new SuccessResult();
