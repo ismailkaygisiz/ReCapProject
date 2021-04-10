@@ -82,6 +82,9 @@ namespace Business.Concrete
         public IResult Update(User user)
         {
             var _user = _userDal.Get(u => u.Id == user.Id);
+            _user.FirstName = user.FirstName;
+            _user.LastName = user.LastName;
+            _user.Status = user.Status;
 
             _userDal.Update(_user);
             return new SuccessResult();
