@@ -6,6 +6,23 @@
 
 <br>
 
+## Bilgilendirme
+
+<b>
+- Bu proje, İsmail KAYGISIZ tarafından Engin DEMİROĞ'un ücretsiz olarak yaptığı Yazılım Geliştirici Yetiştirme Kampı'nda verilen ödevler sonucunda geliştirilmiştir.
+</b>
+
+<br>
+<br>
+
+[Yazılım Geliştirici Yetiştirme Kampı](https://www.youtube.com/playlist?list=PLqG356ExoxZVN7rC0KmMo0lvECK97VRZg)
+
+[Kodlama.io](https://www.kodlama.io/)
+
+---
+
+<br>
+
 ## Gereklilikler
 
 ---
