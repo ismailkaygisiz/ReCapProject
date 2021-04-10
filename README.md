@@ -22,11 +22,11 @@
 
 - ### Uygulamalar
 
-  - Backend
+  - <b>BackEnd</b>
 
     .Net Core 3.1 ve .Net Core 2.0 derleyebilecek herhangi bir geliştirme ortamı.
 
-  - FrontEnd
+  - <b>FrontEnd</b>
 
     Angular CLI 11.2.3 derleyebilecek herhangi bir geliştirme ortamı.
 
