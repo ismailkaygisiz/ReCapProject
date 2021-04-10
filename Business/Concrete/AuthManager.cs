@@ -25,7 +25,6 @@ namespace Business.Concrete
             _tokenHelper = tokenHelper;
         }
 
-        [CacheAspect]
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
             var roles = _userService.GetClaims(user).Data;

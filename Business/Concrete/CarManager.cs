@@ -29,6 +29,7 @@ namespace Business.Concrete
             _carImageService = carImageService;
         }
 
+        [SecuredOperation("Admin")]
         [ValidationAspect(typeof(CarValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("ICarService.Get")]
@@ -48,6 +49,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [SecuredOperation("Admin")]
         [TransactionScopeAspect]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
@@ -152,6 +154,7 @@ namespace Business.Concrete
         }
 
 
+        [SecuredOperation("Admin")]
         [ValidationAspect(typeof(CarValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("ICarService.Get")]
@@ -175,7 +178,7 @@ namespace Business.Concrete
 
         private decimal CalculateFindeksPoint(Car car)
         {
-            var scoreToAdd = (car.DailyPrice * 5) / 100;
+            var scoreToAdd = (car.DailyPrice) / 4;
             return scoreToAdd;
         }
 

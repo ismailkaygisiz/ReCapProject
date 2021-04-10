@@ -7,6 +7,7 @@ namespace Business.Abstract
     public interface IPaymentService
     {
         IDataResult<List<Payment>> GetPaymentsByCustomerId(int customerId);
+        IDataResult<List<Payment>> GetAll();
         IDataResult<Payment> GetPaymentById(int id);
         IResult Add(Payment payment);
         IResult Delete(Payment payment);

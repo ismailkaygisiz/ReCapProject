@@ -21,6 +21,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Payment>>(_paymentDal.GetAll(p => p.CustomerId == customerId));
         }
 
+        public IDataResult<List<Payment>> GetAll()
+        {
+            return new SuccessDataResult<List<Payment>>(_paymentDal.GetAll());
+        }
+
         public IDataResult<Payment> GetPaymentById(int id)
         {
             return new SuccessDataResult<Payment>(_paymentDal.Get(p => p.Id == id));

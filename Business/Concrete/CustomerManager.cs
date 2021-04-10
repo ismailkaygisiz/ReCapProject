@@ -106,7 +106,8 @@ namespace Business.Concrete
         {
             IResult result = BusinessRules.Run(
                 CheckIfCustomerIdIsNotExists(customer.Id),
-                CheckIfFindeksPointGraterThanValue(customer)
+                CheckIfFindeksPointGraterThanValue(customer),
+                CheckIfFindeksPointEqualsZero(customer)
             );
 
             if (result != null)
