@@ -63,14 +63,14 @@
 
 - ### Angular Projesini API' ye Entegre Etme
 
-  Dosya yolu üzerinden AngularUI dizini içinde bulunan ReCapProject projesini Angular çalıştırabileceğiniz bir editörle açın. Daha sonra `src/api.ts` dosyasına giderek kopyaladığınız port adresini gerekli yerlere yapıştırın. Bu işlemi yaparken apiUrl değişkeninde /api/ olmasına dikkat edin.
+  Dosya yolu üzerinden AngularUI dizini içinde bulunan ReCapProject projesini Angular çalıştırabileceğiniz bir editörle açın. Daha sonra `src/api.ts` dosyasına giderek kopyaladığınız port adresini gerekli yerlere yapıştırın. Bu işlemi yaparken apiUrl değişkeninde `/api/` ifadesinin olmasına dikkat edin.
   örn : `http://localhost:44311/api/`
 
   <br>
 
 - ### Angular Projesi için Gerekli Modülleri Kurma
 
-  Angular dosya dizini içinde yeni bir terminal oluşturup `npm install` komutunu yazmanız yeterlidir Angular gerekli paketleri kuracaktır.
+  Angular dosya dizini içinde yeni bir terminal oluşturup `npm install` komutunu yazmanız yeterlidir Angular proje için gerekli paketleri kuracaktır.
 
   <br>
 
@@ -78,7 +78,7 @@
 
   Kurulum işlemi bittikten sonra yapmanız gereken terminale `ng serve --open --port 4200` komutunu yazmak olacaktır. Eğer bu port meşgulse veya çalışmıyorsa port adresini değiştirebilirsiniz. Port adresini değiştirdiğinizde `WebAPI/Startup.cs` içindeki
 
-  `app.UseCors(builder => builder.WithOrigins("http://localhost:4200")AllowAnyHeader());`
+  `app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());`
 
   kısmını düzenlemeniz gerekir sadece url değiştirmeniz yeterli olacaktır bu işlemden sonra WebAPI'yi durdurup tekrar çalıştırmanız gerekecektir.
 
@@ -121,7 +121,7 @@ Arama çubuğu marka, renk, günlük ücret ve model yılı için olan aramalar�
 
 <br>
 
-Bu işlemleri yapmadan önce admin yetkisiyle sisteme giriş yapılmalıdır bunun için DbScriptAnfInfos klasörü içinde bulunan `Informations.txt` dosyasından faydalanabilirsiniz. Eğer herhangi bir hesapla giriş yapmazsanız sizi otomatik giriş yap ekranına yönlendirecektir.
+Bu işlemleri yapmadan önce admin yetkisiyle sisteme giriş yapılmalıdır bunun için `DbScriptAndInfos` klasörü içinde bulunan `Informations.txt` dosyasından faydalanabilirsiniz. Eğer herhangi bir hesapla giriş yapmazsanız sizi otomatik giriş yap ekranına yönlendirecektir.
 
 Üst tarafta yer alan Listele butonuna tıkladığınızda önünüze 4 seçenek çıkacaktır.
 
@@ -210,7 +210,7 @@ Eğer giriş yapmışsanız bu butona bastıktan sonra tarih seçme sayfasına y
 <center><img src="https://raw.githubusercontent.com/ismailkaygisiz/ReCapProject/master/Images/Car%20Rental.png"></center>
 
 Burada tarih seçerken dikkat etmeniz gereken geri dönüş tarihinin kiralama tarihinden sonrası olmasıdır ve geri kiralama tarihiyle geri dönüş tarihinin aynı olmamasıdır.
-Bu aşamayıda başarıyla geçtikten sonra ödeme sayfasına yönlendirileceksiniz.
+Bu aşamayı da başarıyla geçtikten sonra ödeme sayfasına yönlendirileceksiniz.
 
 <center><img src="https://raw.githubusercontent.com/ismailkaygisiz/ReCapProject/master/Images/Payment%20Page.png"></center>
 
@@ -238,12 +238,12 @@ Eğer giriş yapmadıysanız Merhaba Kullanıcı yazısını göreceksiniz.
 
 İsminizin yazdığı butona bastığınızda karşınıza Profil ve Çıkış Yap seçenekleri çıkacaktır.
 
-Profil butonuna bastığınızda Profil sayfasına yönlendilirirsiniz.
+Profil butonuna bastığınızda Profil sayfasına yönlendirilirsiniz.
 
 <center><img src="https://raw.githubusercontent.com/ismailkaygisiz/ReCapProject/master/Images/User%20Update%20and%20Delete.png"></center>
 
-Buradan kullanıcıyı doğrudan silebilirsiniz. Bu işlemi yaptıktan sonra tekrar giriş yapmanız eğer mevcut hesabınız yoksa tekrar kayıt olmanız gerekmektedir.
+Buradan kullanıcıyı doğrudan silebilirsiniz. Bu işlemi yaptıktan sonra tekrar giriş yapmanız eğer mevcut hesabınız yoksa tekrar kayıt olmanız gerekmektedir (Admin kullanıcısını silmemelisiniz eğer silerseniz yetkiyi el ile atamak durumunda kalırsınız).
 
-Güncellemek istediğinizde ise değerleri değiştirip Güncelle butonuna basmanız gerkmektedir.
+Güncellemek istediğinizde ise değerleri değiştirip Güncelle butonuna basmanız gerekmektedir.
 
-Findeks Puanı kullanıcı tarafından değiştirilemez. Her kullanıcı kayıt olduğunda random bir findeks puanı verilir. Her araç kiraladığında bu puan aracın fiyatına göre belirli bir oranda artar minimum değeri 0 maksimum değeri 1900'dür.
+Findeks Puanı kullanıcı tarafından değiştirilemez. Her kullanıcı kayıt olduğunda sistem tarafından rastgele bir findeks puanı verilir. Her araç kiraladığında bu puan aracın fiyatına göre belirli bir oranda artar minimum değeri 0 maksimum değeri 1900'dür.
