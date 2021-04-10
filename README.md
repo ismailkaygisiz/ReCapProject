@@ -68,7 +68,7 @@
 
   Klasör içinde bulunan .sln uzantılı dosya açılmalıdır daha sonra WebAPI başlangıç projesi
   olarak işaretlenmeli ve proje build edildikten sonra çalıştırılmalıdır. Eğer önünüzde kullanıcılar varsa tebrikler
-  artık API çalışıyor. Açılan sekmedeki port adresi kopyalanmalıdır.
+  artık API çalışıyor. Açılan sekmedeki port adresini kopyalayın.
 
 ---
 
