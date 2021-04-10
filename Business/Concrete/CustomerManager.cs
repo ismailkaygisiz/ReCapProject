@@ -148,7 +148,7 @@ namespace Business.Concrete
         {
             if (customer.FindeksPoint <= 0)
             {
-                customer.FindeksPoint = new Random().Next(150, 350);
+                customer.FindeksPoint = new Random().Next(200, 350);
             }
 
             return new SuccessResult();
