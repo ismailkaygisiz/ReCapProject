@@ -63,7 +63,7 @@
 
 - ### Angular Projesini API' ye Entegre Etme
 
-  Dosya yolu üzerinden AngularUI dizini içinde bulunan ReCapProject projesini Angular çalıştırabileceğiniz bir editörle açın. Daha sonra src/api.ts dosyasına giderek kopyaladığınız port adresini gerekli yerlere yapıştırın. Bu işlemi yaparken apiUrl değişkeninde /api/ olmasına dikkat edin.
+  Dosya yolu üzerinden AngularUI dizini içinde bulunan ReCapProject projesini Angular çalıştırabileceğiniz bir editörle açın. Daha sonra `src/api.ts` dosyasına giderek kopyaladığınız port adresini gerekli yerlere yapıştırın. Bu işlemi yaparken apiUrl değişkeninde /api/ olmasına dikkat edin.
   örn : http://localhost:44311/api/
 
   <br>
