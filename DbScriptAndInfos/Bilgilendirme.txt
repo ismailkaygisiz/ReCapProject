@@ -1,0 +1,27 @@
+admin rolüne sahip olan kullanıcı--> {
+"id" : 15002
+"firstName" : "Admin FirstName"
+"lastName" : "Admin LastName"
+"companyName" : "Admin CompanyName"
+"email" : "admin@admin.com"
+"password" : "Admin123"
+}
+
+normal kullanıcı -->{
+"id" : 15003
+"firstName" : "FirstName"
+"lastName" : "LastName"
+"companyName" : "CompanyName"
+"email" : "user@user.com"
+"password" : "User1234"
+}
+
+(Normal Kullanıcının 1 Adet Kartı Kayıtlıdır)
+
+Kullanıcı Hesaplarıyla Giriş Yaptıktan Sonra Müşteri Bilgilerini Profilden Görüntüleyebilir ve Düzenleyebilirsiniz.
+
+Sistemde Ekli 2 Araç Bulunmaktadır Birinin Findeks Puanı Yüksekken Diğerinin Düşüktür Bu Sayede Test Edebilirsiniz. Araçların 5 Adet Resmi Bulunmaktadır. Resimleri Güncellemek veya Silmek İçin Güncelleme Sayfasındayken Resmin Üzerine Tıklayarak Resmin Detay Sayfasından Silebilirsiniz.
+Yeni Araç Eklendiğinde Resim Gelmez. Aracı Güncelle Dediğinizde ve Resim Seçmediğinizde Default Resim Tanımlanır. Bunun Sebebi Aracı Eklemeden Id Özelliğinin Tanımlanmaması.
+
+Ekleme Güncelleme ve Silme İşlemlerinde Kullanıcı Yetkisi Yoksa Hata Verir ve Yönlendirme Yapar.
+Varsa İşlemi Gerçekleştirir.

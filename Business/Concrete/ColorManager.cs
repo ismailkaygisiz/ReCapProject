@@ -10,6 +10,7 @@ using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
+using Core.Aspects.Autofac.Authorization;
 
 namespace Business.Concrete
 {
@@ -29,6 +30,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorName == colorName));
         }
 
+        [SecuredOperation("Admin")]
         [ValidationAspect(typeof(ColorValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("IColorService.Get")]
@@ -47,6 +49,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [SecuredOperation("Admin")]
         [TransactionScopeAspect]
         [CacheRemoveAspect("IColorService.Get")]
         public IResult Delete(Color color)
@@ -78,6 +81,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == colorId));
         }
 
+        [SecuredOperation("Admin")]
         [ValidationAspect(typeof(ColorValidator))]
         [TransactionScopeAspect]
         [CacheRemoveAspect("IColorService.Get")]
