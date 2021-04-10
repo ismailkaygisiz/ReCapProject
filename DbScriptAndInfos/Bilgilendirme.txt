@@ -16,7 +16,8 @@ normal kullanıcı -->{
 "password" : "User1234"
 }
 
-(Normal Kullanıcının 1 Adet Kartı Kayıtlıdır)
+(Normal Kullanıcıya Ait 1 Adet Kart ve 1 Adet Kiralama Kayıtlıdır)
+(Admin Kullanıcısına Ait Herhangi Bir Kayıt Bulunmamaktadır)
 
 Kullanıcı Hesaplarıyla Giriş Yaptıktan Sonra Müşteri Bilgilerini Profilden Görüntüleyebilir ve Düzenleyebilirsiniz.
 
