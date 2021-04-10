@@ -4,6 +4,30 @@
 
 ---
 
+<br>
+
+## Gereklilikler
+
+---
+
+<br>
+
+- ### Sürümler
+
+  - Angular CLI 11.2.3. <br>
+  - .Net Core 3.1 <br>
+  - .Net Standart 2.0 <br>
+
+- ### Uygulamalar
+
+  - Backend
+
+    .Net Core 3.1 ve .Net Core 2.0 derleyebilecek herhangi bir geliştirme ortamı yeterli olacaktır
+
+  - FrontEnd
+
+    Angular CLI 11.2.3 derleyebilecek herhangi bir geliştirme ortamı
+
 ---
 
 <br>
