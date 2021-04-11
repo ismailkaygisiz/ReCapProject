@@ -30,6 +30,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     RegisterComponent,
     LogoutComponent,
     ProfileComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
