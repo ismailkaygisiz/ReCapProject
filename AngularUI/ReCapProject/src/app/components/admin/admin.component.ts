@@ -44,7 +44,10 @@ export class AdminComponent implements OnInit {
             }
           }
 
-          this.router.navigate(['']);
+          this.router.navigate(['']).then((c) => {
+            window.location.reload();
+          });
+
           return false;
         });
     });
