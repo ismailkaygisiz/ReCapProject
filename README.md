@@ -60,7 +60,7 @@
 
 - ### Veritabanı Etkinleştirme
 
-  DbScriptAndInfos klasörünün altında bulunan script.sql mevcut veritabanı üzerinde çalıştırılmalıdır (SQLServer).
+  DbScriptAndInfos klasörünün altında bulunan `script.sql` içinde `7.` ve `9.` satırda bulunan dosya yolu kullanıcının bilgisayarına göre düzenlenmelidir. Bu işlemden sonra `script.sql` dosyası mevcut veritabanı üzerinde çalıştırılmalıdır (SQLServer).
   Eğer aynı isimde veritabanı varsa script içinde değişiklik yapılmalıdır. Veritabanı ismi veya sunucu ismi farklıysa `DataAccess/Concrete/EntityFramework/ReCapProjectContext.cs` dosyasındaki bağlantı adresi buna göre değiştirilmelidir.
 
   <br>
