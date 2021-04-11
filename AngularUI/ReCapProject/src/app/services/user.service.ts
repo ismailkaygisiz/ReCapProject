@@ -7,6 +7,7 @@ import { User } from '../models/user';
 import { AuthService } from './auth.service';
 import { LocalStorageService } from './local-storage.service';
 import { apiUrl } from 'src/api';
+import { ListResponseModel } from '../models/listResponseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,18 @@ export class UserService {
       this.localStorageService.getItem('email');
 
     return this.httpClient.get<SingleResponseModel<User>>(newPath);
+  }
+
+  getUserById(id: number): Observable<SingleResponseModel<User>> {
+    let newPath = apiUrl + 'users/getbyid?id=' + id;
+
+    return this.httpClient.get<SingleResponseModel<User>>(newPath);
+  }
+
+  getAll(): Observable<ListResponseModel<User>> {
+    let newPath = apiUrl + 'users/getall';
+
+    return this.httpClient.get<ListResponseModel<User>>(newPath);
   }
 
   update(user: User): Observable<ResponseModel> {

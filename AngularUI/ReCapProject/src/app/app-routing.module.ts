@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminUserProfileComponent } from './components/admin-user-profile/admin-user-profile.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { BrandListComponent } from './components/brand-list/brand-list.component';
 import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
@@ -119,6 +121,16 @@ const routes: Routes = [
   {
     path: 'customers/list',
     component: CustomerComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'admin/users/:userId',
+    component: AdminUserProfileComponent,
+    canActivate: [LoginGuard],
   },
   { path: '**', component: ErrorComponent },
 ];

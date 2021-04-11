@@ -1,0 +1,106 @@
+<div *ngIf="dataLoaded">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">İsim</th>
+        <th scope="col">Soyisim</th>
+        <th scope="col">Email</th>
+        <th scope="col">Durum</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <label>Ekle</label>
+  <select [(ngModel)]="claimId" class="form-select">
+    <option *ngFor="let claim of claims" [value]="claim.id">
+      {{ claim.name }}
+    </option>
+  </select>
+
+  <br />
+
+  <button
+    (click)="add()"
+    style="float: right"
+    *ngIf="claimId"
+    class="btn btn-success"
+  >
+    Rol Ata
+  </button>
+</div>
+
+<br /><br /><br />
+
+<div *ngIf="dataLoadedUserClaims">
+  <div *ngIf="userOperationClaims.length > 0">
+    <h5 style="text-align: center">Kullanıcının Sahip Olduğu Roller</h5>
+    <ul class="list-group">
+      <div>
+        <li
+          style="text-align: center"
+          *ngFor="let claim of userOperationClaims"
+          class="list-group-item"
+        >
+          {{ claim.claim }}
+          <span
+            (click)="set(claim.id)"
+            style="cursor: pointer"
+            class="badge bg-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#dangerModel"
+          >
+            Kaldır
+          </span>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="dangerModel"
+  tabindex="-1"
+  aria-labelledby="dangerModel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dangerModelLabel">
+          Silmek İstediğinizden Emin Misiniz ?
+        </h5>
+        <button
+          type="button"
+          class="btn btn-dark"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Bu İşlemi Yaptıktan Sonra Rol Silinecektir. Emin Misiniz ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">
+          Kapat
+        </button>
+        <button
+          (click)="delete(get())"
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+        >
+          Sil
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

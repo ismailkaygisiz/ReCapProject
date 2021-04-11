@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-3">
+    <h5 style="text-align: center">ROLLER</h5>
+    <ul class="list-group">
+      <li *ngFor="let claim of operationClaims" class="list-group-item">
+        {{ claim.name }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-3">
+    <h5 style="text-align: center">Kullanıcılar</h5>
+    <ul class="list-group">
+      <li
+        *ngFor="let user of users"
+        class="list-group-item"
+        routerLink="/admin/users/{{ user.id }}"
+      >
+        {{ user.firstName }}
+      </li>
+    </ul>
+  </div>
+</div>

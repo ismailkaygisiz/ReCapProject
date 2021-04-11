@@ -1,36 +1,24 @@
 ﻿using Business.Abstract;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaymentController : Controller
+    public class OperationClaimsController : ControllerBase
     {
-        private IPaymentService _paymentService;
+        private IOperationClaimService _operationClaimService;
 
-        public PaymentController(IPaymentService paymentService)
+        public OperationClaimsController(IOperationClaimService operationClaimService)
         {
-            _paymentService = paymentService;
-        }
-
-        [HttpGet("getpaymentsbycustomerid")]
-        public IActionResult GetByCustomerId(int customerId)
-        {
-            var result = _paymentService.GetPaymentsByCustomerId(customerId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
+            _operationClaimService = operationClaimService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _paymentService.GetAll();
+            var result = _operationClaimService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -39,10 +27,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getpaymentbyid")]
+        [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _paymentService.GetPaymentById(id);
+            var result = _operationClaimService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -51,10 +39,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("pay")]
-        public IActionResult Pay(Payment payment)
+        [HttpGet("getbyname")]
+        public IActionResult GetById(string name)
         {
-            var result = _paymentService.Pay(payment);
+            var result = _operationClaimService.GetByName(name);
             if (result.Success)
             {
                 return Ok(result);
@@ -64,9 +52,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Payment payment)
+        public IActionResult Add(OperationClaim operationClaim)
         {
-            var result = _paymentService.Add(payment);
+            var result = _operationClaimService.Add(operationClaim);
             if (result.Success)
             {
                 return Ok(result);
@@ -76,9 +64,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Payment payment)
+        public IActionResult Delete(OperationClaim operationClaim)
         {
-            var result = _paymentService.Delete(payment);
+            var result = _operationClaimService.Delete(operationClaim);
             if (result.Success)
             {
                 return Ok(result);
@@ -88,9 +76,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Payment payment)
+        public IActionResult Update(OperationClaim operationClaim)
         {
-            var result = _paymentService.Update(payment);
+            var result = _operationClaimService.Update(operationClaim);
             if (result.Success)
             {
                 return Ok(result);

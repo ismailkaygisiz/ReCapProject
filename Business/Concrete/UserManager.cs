@@ -63,7 +63,6 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId));
         }
 
-
         public IDataResult<List<User>> GetByLastName(string lastName)
         {
             return new SuccessDataResult<List<User>>(_userDal.GetAll(u => u.LastName == lastName));
