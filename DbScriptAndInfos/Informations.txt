@@ -19,6 +19,8 @@ normal kullanıcı -->{
 (Normal Kullanıcıya Ait 1 Adet Kart ve 1 Adet Kiralama Kayıtlıdır)
 (Admin Kullanıcısına Ait Herhangi Bir Kayıt Bulunmamaktadır)
 
+Sistemde Admin panel desteği zayıf da olsa bulunmaktadır Admin rolüne sahip kullanıcıyla giriş yaptıktan sonra localhost:4200/admin üzerinden giriş yapabilirsiniz. Normal kullanıcı olarak yapmaya kalkarsanız ana sayfaya yönlendirilirsiniz. 
+
 Kullanıcı Hesaplarıyla Giriş Yaptıktan Sonra Müşteri Bilgilerini Profilden Görüntüleyebilir ve Düzenleyebilirsiniz.
 
 Sistemde Ekli 2 Araç Bulunmaktadır Birinin Findeks Puanı Yüksekken Diğerinin Düşüktür Bu Sayede Test Edebilirsiniz. Araçların 5 Adet Resmi Bulunmaktadır.
