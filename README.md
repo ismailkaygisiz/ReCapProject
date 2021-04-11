@@ -8,9 +8,8 @@
 
 ## Bilgilendirme
 
-<b>
-  - Bu proje, İsmail KAYGISIZ tarafından Engin DEMİROĞ'un ücretsiz olarak yaptığı Yazılım Geliştirici Yetiştirme Kampı'nda verilen ödevler sonucunda geliştirilmiştir.
-</b>
+- <b> Bu proje, İsmail KAYGISIZ tarafından Engin DEMİROĞ'un ücretsiz olarak yaptığı Yazılım Geliştirici Yetiştirme Kampı'nda verilen ödevler sonucunda geliştirilmiştir.
+  </b>
 
 <br>
 <br>
@@ -35,9 +34,9 @@
   - .Net Core 3.1
   - .Net Standart 2.0
 
-    Sürümlerle ilgili ayrıntıyı bilgiye projelerin içinde bulunan `.csproj` dosyalarından ve [Dependencies](https://github.com/ismailkaygisiz/ReCapProject/network/dependencies) üzerinden erişebilirsiniz. 
-    
-    Angular projesinde kullanılan modüllere ve sürümlere Angular projesinin içinde bulunan `package.json` ve `package-lock.json` dosyalarından erişebilirsiniz.  
+    Sürümlerle ilgili ayrıntıyı bilgiye projelerin içinde bulunan `.csproj` dosyalarından ve [Dependencies](https://github.com/ismailkaygisiz/ReCapProject/network/dependencies) üzerinden erişebilirsiniz.
+
+    Angular projesinde kullanılan modüllere ve sürümlere Angular projesinin içinde bulunan `package.json` ve `package-lock.json` dosyalarından erişebilirsiniz.
 
 - ### Uygulamalar
 
