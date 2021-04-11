@@ -9,7 +9,7 @@
 ## Bilgilendirme
 
 <b>
-- Bu proje, İsmail KAYGISIZ tarafından Engin DEMİROĞ'un ücretsiz olarak yaptığı Yazılım Geliştirici Yetiştirme Kampı'nda verilen ödevler sonucunda geliştirilmiştir.
+  - Bu proje, İsmail KAYGISIZ tarafından Engin DEMİROĞ'un ücretsiz olarak yaptığı Yazılım Geliştirici Yetiştirme Kampı'nda verilen ödevler sonucunda geliştirilmiştir.
 </b>
 
 <br>
