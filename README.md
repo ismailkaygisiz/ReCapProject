@@ -117,7 +117,7 @@
 
 <br>
 
-### Eğer Bütün Bu Adımları Başarıyla Tamamladıysanız ve Proje Çalışıyorsa Tebrikler Artık Diğer Adımlara Geçebilirsiniz
+### Eğer Bütün Bu Adımları Başarıyla Tamamladıysanız ve Proje Çalışıyorsa Tebrikler Diğer Adımlara Geçmeden Önce `DbScriptAndInfos` Klasörünün İçinde Bulunan Informations.txt Dosyasını Okumanız Gerekiyor.
 
 <br>
 
