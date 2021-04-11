@@ -35,7 +35,9 @@
   - .Net Core 3.1
   - .Net Standart 2.0
 
-    Sürümlerle ilgili ayrıntıyı bilgiye projelerin içinde bulunan .csproj dosyalarından ve [Dependencies](https://github.com/ismailkaygisiz/ReCapProject/network/dependencies) üzerinden erişebilirsiniz.
+    Sürümlerle ilgili ayrıntıyı bilgiye projelerin içinde bulunan `.csproj` dosyalarından ve [Dependencies](https://github.com/ismailkaygisiz/ReCapProject/network/dependencies) üzerinden erişebilirsiniz. 
+    
+    Angular projesinde kullanılan modüllere ve sürümlere Angular projesinin içinde bulunan `package.json` ve `package-lock.json` dosyalarından erişebilirsiniz.  
 
 - ### Uygulamalar
 
