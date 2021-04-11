@@ -60,14 +60,14 @@
 
 - ### Veritabanı Etkinleştirme
 
-  DbScriptAndInfos klasörünün altında bulunan script.sql mevcut veritabanı üzerinde çalıştırılmalıdır. (SQLServer)
+  DbScriptAndInfos klasörünün altında bulunan script.sql mevcut veritabanı üzerinde çalıştırılmalıdır (SQLServer).
   Eğer aynı isimde veritabanı varsa script içinde değişiklik yapılmalıdır. Veritabanı ismi veya sunucu ismi farklıysa `DataAccess/Concrete/EntityFramework/ReCapProjectContext.cs` dosyasındaki bağlantı adresi buna göre değiştirilmelidir.
 
   <br>
 
 - ### Projeyi Çalıştırma
 
-  Klasör içinde bulunan .sln uzantılı dosya açılmalıdır daha sonra WebAPI başlangıç projesi
+  Klasör içinde bulunan `.sln` uzantılı dosya açılmalıdır daha sonra `WebAPI` başlangıç projesi
   olarak işaretlenmeli ve proje build edildikten sonra çalıştırılmalıdır. Eğer önünüzde kullanıcılar varsa tebrikler
   artık API çalışıyor. Açılan sekmedeki port adresini kopyalayın.
 
@@ -82,7 +82,20 @@
 - ### Angular Projesini API' ye Entegre Etme
 
   Dosya yolu üzerinden AngularUI dizini içinde bulunan ReCapProject projesini Angular çalıştırabileceğiniz bir editörle açın. Daha sonra `src/api.ts` dosyasına giderek kopyaladığınız port adresini gerekli yerlere yapıştırın. Bu işlemi yaparken apiUrl değişkeninde `/api/` ifadesinin olmasına dikkat edin.
-  örn : `http://localhost:44311/api/`
+  Projeyi ilk indirdiğiniz api dosyasının içeriğinin aşağıdaki gibi olduğunu göreceksiniz.
+
+  ```
+  export const apiUrl = http://localhost:5001/api/;
+  export const imageUrl = http://localhost:5001/;
+  ```
+
+  Bu adresleri kendi port adresinize göre değiştirmelisiniz. Örn: port adresiniz 44311 ise dosyanın içeriği aşağıdaki gibi olmalıdır.
+
+  ```
+  export const apiUrl = http://localhost:44311/api/;
+  export const imageUrl = http://localhost:44311/;
+
+  ```
 
   <br>
 
