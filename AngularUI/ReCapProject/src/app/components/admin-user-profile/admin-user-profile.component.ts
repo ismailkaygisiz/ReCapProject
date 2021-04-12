@@ -72,6 +72,7 @@ export class AdminUserProfileComponent implements OnInit {
             },
             (responseError) => {
               this.toastrService.error(responseError.error.message, 'Hata');
+              this.claimId = 0;
             }
           );
       }
