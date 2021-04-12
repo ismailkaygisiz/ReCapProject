@@ -14,43 +14,19 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  user: User;
   operationClaims: OperationClaim[];
   users: User[];
 
   constructor(
     private userService: UserService,
     private operaionClaimService: OperationClaimService,
-    private userOperationClaimService: UserOperationClaimService,
-    private router: Router
+    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
     this.control();
     this.getOperationClaims();
     this.getUsers();
-  }
-
-  control() {
-    this.userService.getUserByMailUseLocalStorage().subscribe((response) => {
-      this.user = response.data;
-
-      this.userOperationClaimService
-        .getDetailsByUserId(this.user.id)
-        .subscribe((response) => {
-          for (let i = 0; i < response.data.length; i++) {
-            if (response.data[i].claim == 'Admin') {
-              return true;
-            }
-          }
-
-          this.router.navigate(['']).then((c) => {
-            window.location.reload();
-          });
-
-          return false;
-        });
-    });
   }
 
   getOperationClaims() {
@@ -62,6 +38,12 @@ export class AdminComponent implements OnInit {
   getUsers() {
     this.userService.getAll().subscribe((response) => {
       this.users = response.data;
+    });
+  }
+
+  control() {
+    this.userService.getUserByMailUseLocalStorage().subscribe((response) => {
+      this.userOperationClaimService.control(response.data.id);
     });
   }
 }

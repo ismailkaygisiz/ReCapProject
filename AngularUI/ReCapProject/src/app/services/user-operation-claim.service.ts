@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { apiUrl } from 'src/api';
 import { ListResponseModel } from '../models/listResponseModel';
@@ -7,13 +8,18 @@ import { OperationClaimDetailDto } from '../models/operationClaimDetailDto';
 import { ResponseModel } from '../models/responseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { UserOperationClaim } from '../models/userOperationClaim';
-import { UserOperationClaimAdd } from '../models/UserOperationClaimAdd';
+import { UserOperationClaimAdd } from '../models/userOperationClaimAdd';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserOperationClaimService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   add(userOperationClaim: UserOperationClaimAdd): Observable<ResponseModel> {
     let newPath = apiUrl + 'useroperationclaims/add';
@@ -86,5 +92,26 @@ export class UserOperationClaimService {
     return this.httpClient.get<ListResponseModel<OperationClaimDetailDto>>(
       newPath
     );
+  }
+
+  control(id: number) {
+    this.userService.getUserByMailUseLocalStorage().subscribe((response) => {
+      this.getDetailsByUserId(id).subscribe((response) => {
+        for (let i = 0; i < response.data.length; i++) {
+          if (
+            response.data[i].claim == 'Admin' ||
+            response.data[i].claim == 'Moderatör'
+          ) {
+            return true;
+          }
+        }
+
+        this.router.navigate(['']).then((c) => {
+          window.location.reload();
+        });
+
+        return false;
+      });
+    });
   }
 }

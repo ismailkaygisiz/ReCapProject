@@ -27,8 +27,7 @@ export class AdminUserProfileComponent implements OnInit {
     private userService: UserService,
     private operationClaimService: OperationClaimService,
     private activatedRoute: ActivatedRoute,
-    private userOperationClaimService: UserOperationClaimService,
-    private router: Router
+    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +52,10 @@ export class AdminUserProfileComponent implements OnInit {
           this.dataLoadedUserClaims = true;
           if (response.data.length > 0) {
             // Filtreleme uygulanacak
+
             this.claims = responseClaim.data;
+
+            //
           } else {
             this.claims = responseClaim.data;
           }
@@ -102,25 +104,7 @@ export class AdminUserProfileComponent implements OnInit {
 
   control() {
     this.userService.getUserByMailUseLocalStorage().subscribe((response) => {
-      this.user = response.data;
-
-      this.userOperationClaimService
-        .getDetailsByUserId(this.user.id)
-        .subscribe((response) => {
-          for (let i = 0; i < response.data.length; i++) {
-            if (
-              response.data[i].claim == 'Admin' ||
-              response.data[i].claim == 'Moderatör'
-            ) {
-              return true;
-            }
-          }
-
-          this.router.navigate(['']).then((c) => {
-            window.location.reload();
-          });
-          return false;
-        });
+      this.userOperationClaimService.control(response.data.id);
     });
   }
 }
