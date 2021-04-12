@@ -29,7 +29,7 @@ namespace Business.Concrete
         {
             var roles = _userService.GetClaims(user).Data;
             var accessToken = _tokenHelper.CreateToken(user, roles);
-            return new SuccessDataResult<AccessToken>(accessToken, "Giriş Yapıldı");
+            return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
 
         [TransactionScopeAspect]
