@@ -70,11 +70,6 @@ export class RegisterComponent implements OnInit {
                 .add(this.customer)
                 .subscribe((responseCustomer) => {
                   this.user.status = true;
-
-                  this.toastrService.success(
-                    'Kayıt Başarılı Yönlendiriliyorsunuz',
-                    'Kayıt Başarılı'
-                  );
                   this.localStorageService.setItem(
                     'token',
                     response.data.token

@@ -7,6 +7,7 @@ import { CarImage } from 'src/app/models/carImage';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
 import { imageUrl } from 'src/api';
+import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 
 @Component({
   selector: 'app-car-image-update',
@@ -28,10 +29,13 @@ export class CarImageUpdateComponent implements OnInit {
     private router: Router,
     private carService: CarService,
     private formBuilder: FormBuilder,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
+    this.userOperationClaimService.control();
+
     this.activatedRoute.params.subscribe((params) => {
       if (params['carId'] && params['carImageId']) {
         this.carImageService

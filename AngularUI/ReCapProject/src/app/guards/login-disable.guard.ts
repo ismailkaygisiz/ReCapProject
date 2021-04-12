@@ -32,9 +32,7 @@ export class LoginDisableGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['']).then((c) => {
-      window.location.reload();
-    });
+    this.router.navigate(['']);
 
     this.toastrService.info(
       'Zaten Giriş Yaptınız Ana Sayfaya Yönlendiriliyorsunuz',

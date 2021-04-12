@@ -11,6 +11,7 @@ import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
 import { ColorService } from 'src/app/services/color.service';
 import { imageUrl } from 'src/api';
+import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 
 @Component({
   selector: 'app-car-update',
@@ -39,10 +40,13 @@ export class CarUpdateComponent implements OnInit {
     private brandService: BrandService,
     private colorService: ColorService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
+    this.userOperationClaimService.control();
+
     this.activatedRoute.params.subscribe((params) => {
       this.getBrands();
       this.getColors();

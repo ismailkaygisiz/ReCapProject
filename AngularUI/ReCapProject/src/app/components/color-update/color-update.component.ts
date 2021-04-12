@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
+import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 
 @Component({
   selector: 'app-color-update',
@@ -20,10 +21,13 @@ export class ColorUpdateComponent implements OnInit {
     private router: Router,
     private colorServie: ColorService,
     private formBuilder: FormBuilder,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
+    this.userOperationClaimService.control();
+
     this.activatedRoute.params.subscribe((params) => {
       if (params['colorId']) {
         this.colorServie.getById(params['colorId']).subscribe((response) => {

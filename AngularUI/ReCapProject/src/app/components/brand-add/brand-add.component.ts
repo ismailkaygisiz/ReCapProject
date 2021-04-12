@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BrandService } from 'src/app/services/brand.service';
+import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 
 @Component({
   selector: 'app-brand-add',
@@ -16,10 +17,12 @@ export class BrandAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private brandService: BrandService,
-    private router: Router
+    private router: Router,
+    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
+    this.userOperationClaimService.control();
     this.createBrandAddForm();
   }
 

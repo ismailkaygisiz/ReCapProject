@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['']).then((c) => {
             window.location.reload();
           });
-          this.toastrService.success(response.message, 'Başarılı');
         },
         (responseError) => {
           if (responseError.error.Errors != null) {

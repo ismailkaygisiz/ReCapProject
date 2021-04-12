@@ -10,6 +10,7 @@ import { ColorService } from 'src/app/services/color.service';
 import { Brand } from 'src/app/models/brand';
 import { Color } from 'src/app/models/color';
 import { Router } from '@angular/router';
+import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 
 @Component({
   selector: 'app-car-add',
@@ -28,10 +29,12 @@ export class CarAddComponent implements OnInit {
     private toastrService: ToastrService,
     private brandService: BrandService,
     private colorService: ColorService,
-    private router: Router
+    private router: Router,
+    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
+    this.userOperationClaimService.control();
     this.getBrands();
     this.getColors();
     this.createCarAddForm();

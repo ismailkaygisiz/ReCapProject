@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ColorService } from 'src/app/services/color.service';
+import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 
 @Component({
   selector: 'app-color-add',
@@ -22,10 +23,12 @@ export class ColorAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private colorService: ColorService,
-    private router: Router
+    private router: Router,
+    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
+    this.userOperationClaimService.control();
     this.createColorAddForm();
   }
 

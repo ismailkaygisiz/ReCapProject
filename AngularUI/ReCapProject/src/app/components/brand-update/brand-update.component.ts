@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
+import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 
 @Component({
   selector: 'app-brand-update',
@@ -20,10 +21,13 @@ export class BrandUpdateComponent implements OnInit {
     private router: Router,
     private brandService: BrandService,
     private formBuilder: FormBuilder,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
+    this.userOperationClaimService.control();
+
     this.activatedRoute.params.subscribe((params) => {
       if (params['brandId']) {
         this.brandService.getById(params['brandId']).subscribe((response) => {

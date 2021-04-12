@@ -32,9 +32,8 @@ export class LoginGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['auth/login']).then((c) => {
-      window.location.reload();
-    });
+    this.router.navigate(['auth/login']);
+    this.toastrService.info('İlk Önce Giriş Yapmanız Gerek', 'Bilgilendirme');
 
     return false;
   }

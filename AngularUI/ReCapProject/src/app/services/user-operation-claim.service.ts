@@ -106,9 +106,7 @@ export class UserOperationClaimService {
           }
         }
 
-        this.router.navigate(['']).then((c) => {
-          window.location.reload();
-        });
+        this.router.navigate(['']).then((c) => {});
 
         return false;
       });
