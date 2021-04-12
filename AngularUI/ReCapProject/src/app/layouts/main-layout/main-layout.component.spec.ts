@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainLoyautComponent } from './main-loyaut.component';
+import { MainLayoutComponent } from './main-layout.component';
 
-describe('MainLoyautComponent', () => {
-  let component: MainLoyautComponent;
-  let fixture: ComponentFixture<MainLoyautComponent>;
+describe('MainLayoutComponent', () => {
+  let component: MainLayoutComponent;
+  let fixture: ComponentFixture<MainLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainLoyautComponent ]
+      declarations: [ MainLayoutComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainLoyautComponent);
+    fixture = TestBed.createComponent(MainLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

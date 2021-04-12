@@ -33,9 +33,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminUserProfileComponent } from './components/admin-user-profile/admin-user-profile.component';
-import { MainLoyautComponent } from './Loyauts/main-loyaut/main-loyaut.component';
-import { AdminLoyautComponent } from './Loyauts/admin-loyaut/admin-loyaut.component';
 import { AdminNaviComponent } from './components/admin-navi/admin-navi.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -66,9 +66,9 @@ import { AdminNaviComponent } from './components/admin-navi/admin-navi.component
     ErrorComponent,
     AdminComponent,
     AdminUserProfileComponent,
-    MainLoyautComponent,
-    AdminLoyautComponent,
     AdminNaviComponent,
+    AdminLayoutComponent,
+    MainLayoutComponent,
   ],
   imports: [
     BrowserModule,

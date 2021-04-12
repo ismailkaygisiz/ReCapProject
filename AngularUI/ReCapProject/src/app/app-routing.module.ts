@@ -23,13 +23,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { LoginDisableGuard } from './guards/login-disable.guard';
 import { LoginGuard } from './guards/login.guard';
-import { AdminLoyautComponent } from './Loyauts/admin-loyaut/admin-loyaut.component';
-import { MainLoyautComponent } from './Loyauts/main-loyaut/main-loyaut.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MainLoyautComponent,
+    component: MainLayoutComponent,
     children: [
       { path: '', pathMatch: 'full', component: CarComponent },
       { path: 'cars/list', component: CarComponent },
@@ -76,7 +76,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminLoyautComponent,
+    component: AdminLayoutComponent,
     children: [
       { path: '', pathMatch: 'full', component: AdminComponent },
       {

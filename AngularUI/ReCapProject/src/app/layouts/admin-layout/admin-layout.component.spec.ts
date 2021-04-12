@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminLoyautComponent } from './admin-loyaut.component';
+import { AdminLayoutComponent } from './admin-layout.component';
 
-describe('AdminLoyautComponent', () => {
-  let component: AdminLoyautComponent;
-  let fixture: ComponentFixture<AdminLoyautComponent>;
+describe('AdminLayoutComponent', () => {
+  let component: AdminLayoutComponent;
+  let fixture: ComponentFixture<AdminLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminLoyautComponent ]
+      declarations: [ AdminLayoutComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminLoyautComponent);
+    fixture = TestBed.createComponent(AdminLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
