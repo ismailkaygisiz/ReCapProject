@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.control();
+    this.userOperationClaimService.control();
     this.getOperationClaims();
     this.getUsers();
   }
@@ -38,12 +38,6 @@ export class AdminComponent implements OnInit {
   getUsers() {
     this.userService.getAll().subscribe((response) => {
       this.users = response.data;
-    });
-  }
-
-  control() {
-    this.userService.getUserByMailUseLocalStorage().subscribe((response) => {
-      this.userOperationClaimService.control(response.data.id);
     });
   }
 }

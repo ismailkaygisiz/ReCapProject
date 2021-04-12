@@ -31,7 +31,8 @@ export class AdminUserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.control();
+    this.userOperationClaimService.control();
+
     this.activatedRoute.params.subscribe((params) => {
       if (params['userId']) {
         this.userService.getUserById(params['userId']).subscribe((response) => {
@@ -100,11 +101,5 @@ export class AdminUserProfileComponent implements OnInit {
 
   get() {
     return this.id;
-  }
-
-  control() {
-    this.userService.getUserByMailUseLocalStorage().subscribe((response) => {
-      this.userOperationClaimService.control(response.data.id);
-    });
   }
 }
