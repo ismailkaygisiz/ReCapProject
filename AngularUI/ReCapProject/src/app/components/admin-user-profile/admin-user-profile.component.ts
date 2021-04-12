@@ -53,10 +53,11 @@ export class AdminUserProfileComponent implements OnInit {
           this.dataLoadedUserClaims = true;
           if (response.data.length > 0) {
             // Filtreleme uygulanacak
+            this.userService
+              .getClaims(this.user)
+              .subscribe((responseUser) => {});
 
             this.claims = responseClaim.data;
-
-            //
           } else {
             this.claims = responseClaim.data;
           }

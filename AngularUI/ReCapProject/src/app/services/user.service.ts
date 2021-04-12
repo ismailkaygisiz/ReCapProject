@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { LocalStorageService } from './local-storage.service';
 import { apiUrl } from 'src/api';
 import { ListResponseModel } from '../models/listResponseModel';
+import { OperationClaim } from '../models/operationClaim';
 
 @Injectable({
   providedIn: 'root',
@@ -49,5 +50,14 @@ export class UserService {
     let newPath = apiUrl + 'users/delete';
 
     return this.httpClient.post<ResponseModel>(newPath, user);
+  }
+
+  getClaims(user: User): Observable<ListResponseModel<OperationClaim>> {
+    let newPath = apiUrl + 'users/getclaims';
+
+    return this.httpClient.post<ListResponseModel<OperationClaim>>(
+      newPath,
+      user
+    );
   }
 }
