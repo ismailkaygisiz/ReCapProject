@@ -23,113 +23,117 @@ import { RegisterComponent } from './components/register/register.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { LoginDisableGuard } from './guards/login-disable.guard';
 import { LoginGuard } from './guards/login.guard';
+import { AdminLoyautComponent } from './Loyauts/admin-loyaut/admin-loyaut.component';
+import { MainLoyautComponent } from './Loyauts/main-loyaut/main-loyaut.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: CarComponent },
+  {
+    path: '',
+    component: MainLoyautComponent,
+    children: [
+      { path: '', pathMatch: 'full', component: CarComponent },
+      { path: 'cars/list', component: CarComponent },
+      { path: 'cars/brand/:brandId', component: CarComponent },
+      { path: 'cars/color/:colorId', component: CarComponent },
+      { path: 'cars/:brand/:color', component: CarComponent },
+      { path: 'cars/:carId', component: CarDetailComponent },
+      {
+        path: 'car-rental/:car',
+        component: CarRentalComponent,
+        canActivate: [LoginGuard],
+      },
+      {
+        path: 'car-rental/:carIdForPay/pay',
+        component: PaymentComponent,
+        canActivate: [LoginGuard],
+      },
+      {
+        path: 'auth/login',
+        component: LoginComponent,
+        canActivate: [LoginDisableGuard],
+      },
 
-  { path: 'cars/list', component: CarComponent },
-  { path: 'cars/brand/:brandId', component: CarComponent },
-  { path: 'cars/color/:colorId', component: CarComponent },
-  { path: 'cars/:brand/:color', component: CarComponent },
-  { path: 'cars/:carId', component: CarDetailComponent },
+      {
+        path: 'auth/register',
+        component: RegisterComponent,
+        canActivate: [LoginDisableGuard],
+      },
+      {
+        path: 'user/:userId',
+        component: ProfileComponent,
+        canActivate: [LoginGuard],
+      },
 
-  {
-    path: 'car-rental/:car',
-    component: CarRentalComponent,
-    canActivate: [LoginGuard],
-  },
-
-  {
-    path: 'car-rental/:carIdForPay/pay',
-    component: PaymentComponent,
-    canActivate: [LoginGuard],
-  },
-
-  {
-    path: 'add/brand-add',
-    component: BrandAddComponent,
-    canActivate: [LoginGuard],
-  },
-  {
-    path: 'add/color-add',
-    component: ColorAddComponent,
-    canActivate: [LoginGuard],
-  },
-  {
-    path: 'add/car-add',
-    component: CarAddComponent,
-    canActivate: [LoginGuard],
-  },
-
-  {
-    path: 'update/car/:carId',
-    component: CarUpdateComponent,
-    canActivate: [LoginGuard],
-  },
-
-  {
-    path: 'brands/list',
-    component: BrandListComponent,
-    canActivate: [LoginGuard],
-  },
-  {
-    path: 'brands/:brandId',
-    component: BrandUpdateComponent,
-    canActivate: [LoginGuard],
-  },
-
-  {
-    path: 'colors/list',
-    component: ColorListComponent,
-    canActivate: [LoginGuard],
-  },
-  {
-    path: 'colors/:colorId',
-    component: ColorUpdateComponent,
-    canActivate: [LoginGuard],
-  },
-
-  {
-    path: 'update/car/:carId/images/:carImageId',
-    component: CarImageUpdateComponent,
-    canActivate: [LoginGuard],
-  },
-
-  {
-    path: 'auth/login',
-    component: LoginComponent,
-    canActivate: [LoginDisableGuard],
-  },
-
-  {
-    path: 'auth/register',
-    component: RegisterComponent,
-    canActivate: [LoginDisableGuard],
-  },
-
-  {
-    path: 'user/:userId',
-    component: ProfileComponent,
-    canActivate: [LoginGuard],
-  },
-
-  {
-    path: 'rentals/list',
-    component: RentalComponent,
-  },
-  {
-    path: 'customers/list',
-    component: CustomerComponent,
+      {
+        path: 'rentals/list',
+        component: RentalComponent,
+      },
+      {
+        path: 'customers/list',
+        component: CustomerComponent,
+      },
+    ],
   },
   {
     path: 'admin',
-    component: AdminComponent,
-    canActivate: [LoginGuard],
-  },
-  {
-    path: 'admin/users/:userId',
-    component: AdminUserProfileComponent,
-    canActivate: [LoginGuard],
+    component: AdminLoyautComponent,
+    children: [
+      { path: '', pathMatch: 'full', component: AdminComponent },
+      {
+        path: 'brands/list',
+        component: BrandListComponent,
+        canActivate: [LoginGuard],
+      },
+      {
+        path: 'colors/list',
+        component: ColorListComponent,
+        canActivate: [LoginGuard],
+      },
+      {
+        path: 'add/brand-add',
+        component: BrandAddComponent,
+        canActivate: [LoginGuard],
+      },
+      {
+        path: 'add/color-add',
+        component: ColorAddComponent,
+        canActivate: [LoginGuard],
+      },
+      {
+        path: 'add/car-add',
+        component: CarAddComponent,
+        canActivate: [LoginGuard],
+      },
+
+      {
+        path: 'update/car/:carId',
+        component: CarUpdateComponent,
+        canActivate: [LoginGuard],
+      },
+
+      {
+        path: 'brands/:brandId',
+        component: BrandUpdateComponent,
+        canActivate: [LoginGuard],
+      },
+
+      {
+        path: 'colors/:colorId',
+        component: ColorUpdateComponent,
+        canActivate: [LoginGuard],
+      },
+
+      {
+        path: 'update/car/:carId/images/:carImageId',
+        component: CarImageUpdateComponent,
+        canActivate: [LoginGuard],
+      },
+      {
+        path: 'users/:userId',
+        component: AdminUserProfileComponent,
+        canActivate: [LoginGuard],
+      },
+    ],
   },
   { path: '**', component: ErrorComponent },
 ];

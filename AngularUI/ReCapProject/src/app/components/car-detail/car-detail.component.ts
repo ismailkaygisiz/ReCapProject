@@ -48,7 +48,7 @@ export class CarDetailComponent implements OnInit {
     this.carService.delete(this.car).subscribe(
       (response) => {
         this.toastrService.success(response.message, 'İşlem Başarılı');
-        this.router.navigate(['']);
+        this.router.navigate(['admin']);
       },
       (responseError) => {
         if (responseError.error.Errors != null) {

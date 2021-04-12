@@ -11,7 +11,6 @@ import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
 import { ColorService } from 'src/app/services/color.service';
 import { imageUrl } from 'src/api';
-import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 
 @Component({
   selector: 'app-car-update',
@@ -41,12 +40,9 @@ export class CarUpdateComponent implements OnInit {
     private colorService: ColorService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
-    this.userOperationClaimService.control();
-
     this.activatedRoute.params.subscribe((params) => {
       this.getBrands();
       this.getColors();
@@ -116,7 +112,7 @@ export class CarUpdateComponent implements OnInit {
                   'Araç Güncelleme Başarılı',
                   'Başarılı'
                 );
-                this.router.navigate(['/cars', this.car.id]);
+                this.router.navigate(['cars', this.car.id]);
               },
               (responseError) => {
                 console.log(this.file);
@@ -130,7 +126,7 @@ export class CarUpdateComponent implements OnInit {
                   'Araç Güncelleme Başarılı',
                   'Başarılı'
                 );
-                this.router.navigate(['/cars', this.car.id]);
+                this.router.navigate(['cars', this.car.id]);
               },
               (responseError) => {
                 this.toastrService.error(responseError.error.message, 'Hata');
@@ -138,7 +134,7 @@ export class CarUpdateComponent implements OnInit {
             );
           } else {
             this.toastrService.success('Araç Güncelleme Başarılı', 'Başarılı');
-            this.router.navigate(['/cars', this.car.id]);
+            this.router.navigate(['cars', this.car.id]);
           }
         },
         (responseError) => {

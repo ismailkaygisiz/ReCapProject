@@ -9,7 +9,7 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
-              routerLink="/update/car/{{ car.id }}/images/{{
+              routerLink="/admin/update/car/{{ car.id }}/images/{{
                 car.imagePath.id
               }}"
               src="{{ url }}{{ car.imagePath.imagePath }}"
@@ -19,7 +19,7 @@
           </div>
           <div *ngFor="let carImage of carImages" class="carousel-item">
             <img
-              routerLink="/update/car/{{ car.id }}/images/{{ carImage.id }}"
+              routerLink="/admin/update/car/{{ car.id }}/images/{{ carImage.id }}"
               src="{{ url }}{{ carImage.imagePath }}"
               class="d-block w-100"
               alt="{{ carImage.imagePath }}"

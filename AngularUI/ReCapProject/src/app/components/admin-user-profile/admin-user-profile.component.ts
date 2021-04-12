@@ -33,7 +33,6 @@ export class AdminUserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userOperationClaimService.control();
 
     this.activatedRoute.params.subscribe((params) => {
       if (params['userId']) {

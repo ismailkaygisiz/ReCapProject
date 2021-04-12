@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
-import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 
 @Component({
   selector: 'app-color-list',

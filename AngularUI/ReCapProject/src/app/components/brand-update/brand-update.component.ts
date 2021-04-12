@@ -22,11 +22,9 @@ export class BrandUpdateComponent implements OnInit {
     private brandService: BrandService,
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
-    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
-    this.userOperationClaimService.control();
 
     this.activatedRoute.params.subscribe((params) => {
       if (params['brandId']) {
@@ -53,7 +51,7 @@ export class BrandUpdateComponent implements OnInit {
       this.brandService.update(brandModel).subscribe(
         (response) => {
           this.toastrService.success(response.message, 'Başarılı');
-          this.router.navigate(['']);
+          this.router.navigate(['admin/brands/list']);
         },
         (responseError) => {
           if (responseError.error.Errors != null) {
@@ -68,7 +66,7 @@ export class BrandUpdateComponent implements OnInit {
               'Bir Şeyler Ters Gitti İşlem Başarısız Yönlendiriliyorsunuz',
               'Hata'
             );
-            this.router.navigate(['']);
+            this.router.navigate(['admin/brands/list']);
           }
         }
       );
@@ -81,14 +79,14 @@ export class BrandUpdateComponent implements OnInit {
     this.brandService.delete(this.brand).subscribe(
       (response) => {
         this.toastrService.success(response.message, 'İşlem Başarılı');
-        this.router.navigate(['']);
+        this.router.navigate(['admin/brands/list']);
       },
       (responseError) => {
         this.toastrService.error(
           'Bir Şeyler Ters Gitti İşlem Başarısız Yönlendiriliyorsunuz',
           'Hata'
         );
-        this.router.navigate(['']);
+        this.router.navigate(['admin/brands/list']);
       }
     );
   }

@@ -18,7 +18,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/"
-            >Ana Sayfa</a
+            >Siteyi Görüntüle</a
           >
         </li>
 
@@ -34,14 +34,60 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
+              <a class="dropdown-item" routerLink="/admin/brands/list"
+                >Markalar</a
+              >
+            </li>
+
+            <li>
+              <a class="dropdown-item" routerLink="/admin/colors/list"
+                >Renkler</a
+              >
+            </li>
+
+            <li><hr class="dropdown-divider" /></li>
+            <li><hr class="dropdown-divider" /></li>
+
+            <li>
               <a class="dropdown-item" routerLink="/rentals/list"
                 >Kiralamalar</a
               >
             </li>
-            <li><hr class="dropdown-divider" /></li>
+
             <li>
               <a class="dropdown-item" routerLink="/customers/list"
                 >Müşteriler</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Ekle
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/admin/add/brand-add"
+                >Marka Ekle</a
+              >
+            </li>
+
+            <li>
+              <a class="dropdown-item" routerLink="/admin/add/color-add"
+                >Renk Ekle</a
+              >
+            </li>
+
+            <li>
+              <a class="dropdown-item" routerLink="/admin/add/car-add"
+                >Araba Ekle</a
               >
             </li>
           </ul>

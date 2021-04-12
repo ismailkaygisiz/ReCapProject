@@ -94,7 +94,7 @@ export class UserOperationClaimService {
     );
   }
 
-  control() {
+  adminControl() {
     this.userService.getUserByMailUseLocalStorage().subscribe((response) => {
       this.getDetailsByUserId(response.data.id).subscribe((response) => {
         for (let i = 0; i < response.data.length; i++) {

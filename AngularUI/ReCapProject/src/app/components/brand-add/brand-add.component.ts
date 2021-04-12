@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BrandService } from 'src/app/services/brand.service';
-import { UserOperationClaimService } from 'src/app/services/user-operation-claim.service';
 
 @Component({
   selector: 'app-brand-add',
@@ -18,11 +17,9 @@ export class BrandAddComponent implements OnInit {
     private toastrService: ToastrService,
     private brandService: BrandService,
     private router: Router,
-    private userOperationClaimService: UserOperationClaimService
   ) {}
 
   ngOnInit(): void {
-    this.userOperationClaimService.control();
     this.createBrandAddForm();
   }
 
@@ -39,7 +36,7 @@ export class BrandAddComponent implements OnInit {
       this.brandService.add(brandModel).subscribe(
         (response) => {
           this.toastrService.success(response.message, 'Başarılı');
-          this.router.navigate(['']);
+          this.router.navigate(['admin/brands/list']);
         },
         (responseError) => {
           if (responseError.error.Errors != null) {
@@ -54,7 +51,7 @@ export class BrandAddComponent implements OnInit {
               'Bir Şeyler Ters Gitti İşlem Başarısız Yönlendiriliyorsunuz',
               'Hata'
             );
-            this.router.navigate(['']);
+            this.router.navigate(['admin/brands/list']);
           }
         }
       );

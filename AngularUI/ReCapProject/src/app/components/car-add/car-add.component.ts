@@ -29,12 +29,10 @@ export class CarAddComponent implements OnInit {
     private toastrService: ToastrService,
     private brandService: BrandService,
     private colorService: ColorService,
-    private router: Router,
-    private userOperationClaimService: UserOperationClaimService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.userOperationClaimService.control();
     this.getBrands();
     this.getColors();
     this.createCarAddForm();
@@ -61,7 +59,7 @@ export class CarAddComponent implements OnInit {
       this.carService.add(carModel).subscribe(
         (response) => {
           this.toastrService.success('Araç Ekleme Başarılı', 'Başarılı');
-          this.router.navigate(['']);
+          this.router.navigate(['admin']);
         },
         (responseError) => {
           if (responseError.error.Errors != null) {
@@ -76,7 +74,7 @@ export class CarAddComponent implements OnInit {
               'Bir Şeyler Ters Gitti Yönlendiriliyorsunuz',
               'Hata'
             );
-            this.router.navigate(['']);
+            this.router.navigate(['admin']);
           }
         }
       );

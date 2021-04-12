@@ -21,13 +21,10 @@ export class ColorUpdateComponent implements OnInit {
     private router: Router,
     private colorServie: ColorService,
     private formBuilder: FormBuilder,
-    private toastrService: ToastrService,
-    private userOperationClaimService: UserOperationClaimService
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.userOperationClaimService.control();
-
     this.activatedRoute.params.subscribe((params) => {
       if (params['colorId']) {
         this.colorServie.getById(params['colorId']).subscribe((response) => {
@@ -53,7 +50,7 @@ export class ColorUpdateComponent implements OnInit {
       this.colorServie.update(colorModel).subscribe(
         (response) => {
           this.toastrService.success(response.message, 'Başarılı');
-          this.router.navigate(['']);
+          this.router.navigate(['admin/colors/list']);
         },
         (responseError) => {
           if (responseError.error.Errors != null) {
@@ -68,7 +65,7 @@ export class ColorUpdateComponent implements OnInit {
               'Bir Şeyler Ters Gitti İşlem Başarısız Yönlendiriliyorsunuz',
               'Hata'
             );
-            this.router.navigate(['']);
+            this.router.navigate(['admin/colors/list']);
           }
         }
       );
