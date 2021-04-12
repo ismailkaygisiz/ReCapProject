@@ -78,7 +78,12 @@ const routes: Routes = [
     path: 'admin',
     component: AdminLayoutComponent,
     children: [
-      { path: '', pathMatch: 'full', component: AdminComponent },
+      {
+        path: '',
+        pathMatch: 'full',
+        component: AdminComponent,
+        canActivate: [LoginGuard],
+      },
       {
         path: 'brands/list',
         component: BrandListComponent,
