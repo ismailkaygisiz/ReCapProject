@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Business.Abstract;
 using Core.Business;
 using Core.Entities.Concrete;
@@ -20,7 +21,10 @@ namespace Business.Concrete
 
         public IResult Add(UserOperationClaim userOperationClaim)
         {
-            IResult result = BusinessRules.Run();
+            IResult result = BusinessRules.Run(
+                CheckIfClaimAlreadyExists(userOperationClaim.UserId,
+                    userOperationClaim.OperationClaimId)
+            );
 
             if (result != null)
             {
@@ -46,7 +50,11 @@ namespace Business.Concrete
 
         public IResult Update(UserOperationClaim userOperationClaim)
         {
-            IResult result = BusinessRules.Run();
+            IResult result =
+                BusinessRules.Run(
+                    CheckIfClaimAlreadyExists(userOperationClaim.UserId,
+                        userOperationClaim.OperationClaimId)
+                );
 
             if (result != null)
             {
@@ -101,6 +109,20 @@ namespace Business.Concrete
         public IDataResult<UserOperationClaim> GetById(int id)
         {
             return new SuccessDataResult<UserOperationClaim>(_userOperationClaimDal.Get(u => u.Id == id));
+        }
+
+        private IResult CheckIfClaimAlreadyExists(int userId, int operationClaimId)
+        {
+            var result = GetByUserId(userId).Data;
+            foreach (var userOperationClaim in result)
+            {
+                if (userOperationClaim.OperationClaimId == operationClaimId)
+                {
+                    return new ErrorResult("Claim Already Exists");
+                }
+            }
+
+            return new SuccessResult();
         }
     }
 }

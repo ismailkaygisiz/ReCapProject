@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { OperationClaim } from 'src/app/models/operationClaim';
 import { OperationClaimDetailDto } from 'src/app/models/operationClaimDetailDto';
 import { User } from 'src/app/models/user';
@@ -27,7 +28,8 @@ export class AdminUserProfileComponent implements OnInit {
     private userService: UserService,
     private operationClaimService: OperationClaimService,
     private activatedRoute: ActivatedRoute,
-    private userOperationClaimService: UserOperationClaimService
+    private userOperationClaimService: UserOperationClaimService,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -50,17 +52,8 @@ export class AdminUserProfileComponent implements OnInit {
         .getDetailsByUserId(id)
         .subscribe((response) => {
           this.userOperationClaims = response.data;
+          this.claims = responseClaim.data;
           this.dataLoadedUserClaims = true;
-          if (response.data.length > 0) {
-            // Filtreleme uygulanacak
-            this.userService
-              .getClaims(this.user)
-              .subscribe((responseUser) => {});
-
-            this.claims = responseClaim.data;
-          } else {
-            this.claims = responseClaim.data;
-          }
         });
     });
   }
@@ -73,9 +66,14 @@ export class AdminUserProfileComponent implements OnInit {
             userId: +params['userId'],
             operationClaimId: +this.claimId,
           })
-          .subscribe((response) => {
-            window.location.reload();
-          });
+          .subscribe(
+            (response) => {
+              window.location.reload();
+            },
+            (responseError) => {
+              this.toastrService.error(responseError.error.message, 'Hata');
+            }
+          );
       }
     });
   }
