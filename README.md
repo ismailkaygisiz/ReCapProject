@@ -18,6 +18,15 @@
 
 [Kodlama.io](https://www.kodlama.io/)
 
+
+<br>
+- İletişim
+
+  [LinkedIn](https://www.linkedin.com/in/ismail-kaygisiz-a39174200/)
+  
+  kaygisizismail24@gmail.com
+
+
 ---
 
 <br>
