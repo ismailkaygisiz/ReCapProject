@@ -21,7 +21,7 @@
 
 <br>
 
-- İletişim
+## İletişim
 
   [LinkedIn](https://www.linkedin.com/in/ismail-kaygisiz-a39174200/)
   
