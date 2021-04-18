@@ -23,9 +23,9 @@
 
 ## İletişim
 
-  [LinkedIn](https://www.linkedin.com/in/ismail-kaygisiz-a39174200/)
+  - [LinkedIn](https://www.linkedin.com/in/ismail-kaygisiz-a39174200/)
   
-  kaygisizismail24@gmail.com
+  - kaygisizismail24@gmail.com
 
 
 ---
