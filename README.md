@@ -52,7 +52,7 @@
 
   - <b>BackEnd</b>
 
-    .Net Core 3.1 ve .Net Core 2.0 derleyebilecek herhangi bir geliştirme ortamı.
+    .Net Core 3.1 ve .Net Standart 2.0 derleyebilecek herhangi bir geliştirme ortamı.
 
   - <b>FrontEnd</b>
 
